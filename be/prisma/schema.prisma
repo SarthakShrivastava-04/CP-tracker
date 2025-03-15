@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  username   String  @unique
+  email      String  @unique
+  password   String
+  leetcode   String? 
+  codeforces String?
+  codechef   String?
+  savedContests SavedContest[] 
+  createdAt DateTime @default(now())
+}
+
+model SavedContest {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId // Foreign key for User
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contestName     String
+  contestDatetime DateTime
+  rating          Int?
+  rank            Int?
+  createdAt DateTime @default(now())
+}
