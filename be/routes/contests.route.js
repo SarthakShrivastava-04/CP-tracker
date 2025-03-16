@@ -1,14 +1,10 @@
 import express from "express";
-import {codechefPastContests} from "../controllers/codchef.controller.js";
-import {codeforcesPastContests} from "../controllers/codeforces.controller.js";
-import { leetcodePastContests } from "../controllers/leetcode.controller.js";
-import { upcomingContests } from "../controllers/upcomingContests.js";
+import { fetchUpcomingContests } from "../controllers/upcomingContests.js";
+import { fetchAllAttendedContests } from "../controllers/attendedContests.controller.js";
 
 const router = express.Router();
 
-router.get("/upcoming", upcomingContests);
-router.get("/past/cf/:handle", codeforcesPastContests);
-router.get("/past/lc/:handle", leetcodePastContests);
-router.get("/past/cc/:handle", codechefPastContests);
+router.get("/upcoming", fetchUpcomingContests);
+router.post("/past", fetchAllAttendedContests);
 
 export default router;

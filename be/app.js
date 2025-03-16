@@ -17,10 +17,10 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/auth", authRoutes)
-// app.use("/api/user", userRoutes)
 // app.use("/api/stats", statsRoutes)
 app.use("/api/contests", contestsRoutes)
 // app.use("/api/solutions", solutionsRoutes)
+// app.use("/api/user", userRoutes)
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
