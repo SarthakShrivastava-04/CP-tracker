@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { formatDateTime } from "../lib/dateFormatter.js";
 
 // Fetch LeetCode past contests
-const fetchLeetCodePastContests = async (lcId) => {
+export const fetchLeetCodePastContests = async (lcId) => {
   try {
     // GraphQL query to fetch user contest history
     const query = `
@@ -62,7 +62,7 @@ const fetchLeetCodePastContests = async (lcId) => {
 };
 
 // Fetch Codeforces past contests
-const fetchCodeforcesPastContests = async (cfId) => {
+export const fetchCodeforcesPastContests = async (cfId) => {
   try {
     const response = await fetch(
       `https://codeforces.com/api/user.rating?handle=${cfId}`
@@ -95,7 +95,7 @@ const fetchCodeforcesPastContests = async (cfId) => {
 };
 
 // Fetch CodeChef past contests
-const fetchCodeChefPastContests = async (ccId) => {
+export const fetchCodeChefPastContests = async (ccId) => {
   try {
     const response = await fetch(`https://www.codechef.com/users/${ccId}`);
     if (response.status === 200) {
