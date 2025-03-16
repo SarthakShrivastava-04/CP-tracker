@@ -1,20 +1,36 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import authRoutes from "./routes/auth.route.js";
+import contestsRoutes from "./routes/contests.route.js";
 
 const app = express();
 
-app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
+dotenv.config();
+
+// app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 
-console.log(process.env.CLIENT_URL)
+// Routes
+app.use("/api/auth", authRoutes)
+// app.use("/api/user", userRoutes)
+// app.use("/api/stats", statsRoutes)
+app.use("/api/contests", contestsRoutes)
+// app.use("/api/solutions", solutionsRoutes)
 
-app.use("/api/posts", postRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/test", testRoute);
-app.use("/api/users", userRoute);
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).json({ message: "Something went wrong!" })
+  })  
 
 const PORT = process.env.PORT || 3000;
 
