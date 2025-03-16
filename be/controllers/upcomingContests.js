@@ -40,7 +40,9 @@ const fetchCodeforcesUpcoming = async () => {
           startDate: formattedDate,
           startTime: formattedTime,
           durationSeconds: contest.durationSeconds,
-          duration: `${Math.floor(contest.durationSeconds / 3600)} hours ${(contest.durationSeconds % 3600) / 60} minutes`,
+          duration: `${Math.floor(contest.durationSeconds / 3600)} hours ${
+            (contest.durationSeconds % 3600) / 60
+          } minutes`,
           timeRemaining: calculateTimeRemaining(contest.startTimeSeconds),
           url: `https://codeforces.com/contests/${contest.id}`,
         };
@@ -98,7 +100,9 @@ const fetchLeetcodeUpcoming = async () => {
           startDate: formattedDate,
           startTime: formattedTime,
           durationSeconds: contest.duration,
-          duration: `${Math.floor(contest.duration / 3600)} hours ${(contest.duration % 3600) / 60} minutes`,
+          duration: `${Math.floor(contest.duration / 3600)} hours ${
+            (contest.duration % 3600) / 60
+          } minutes`,
           timeRemaining: calculateTimeRemaining(contest.startTime),
           url: `https://leetcode.com/contest/${contest.titleSlug}`,
         };
@@ -114,7 +118,9 @@ const fetchLeetcodeUpcoming = async () => {
 // Fetch upcoming CodeChef contests
 const fetchCodechefUpcoming = async () => {
   try {
-    const response = await fetch("https://www.codechef.com/api/list/contests/all");
+    const response = await fetch(
+      "https://www.codechef.com/api/list/contests/all"
+    );
     const data = await response.json();
 
     if (!data.future_contests) {
@@ -136,12 +142,19 @@ const fetchCodechefUpcoming = async () => {
         startDate: formattedDate,
         startTime: formattedTime,
         durationSeconds: Math.floor(
-          (new Date(contest.contest_end_date) - new Date(contest.contest_start_date)) / 1000
+          (new Date(contest.contest_end_date) -
+            new Date(contest.contest_start_date)) /
+            1000
         ),
         duration: `${Math.floor(
-          (new Date(contest.contest_end_date) - new Date(contest.contest_start_date)) / (1000 * 3600)
+          (new Date(contest.contest_end_date) -
+            new Date(contest.contest_start_date)) /
+            (1000 * 3600)
         )} hours ${Math.floor(
-          ((new Date(contest.contest_end_date) - new Date(contest.contest_start_date)) % (1000 * 3600) / (1000 * 60))
+          ((new Date(contest.contest_end_date) -
+            new Date(contest.contest_start_date)) %
+            (1000 * 3600)) /
+            (1000 * 60)
         )} minutes`,
         timeRemaining: calculateTimeRemaining(startTimeUnix),
         url: `www.codechef.com/${contest.contest_code}`,

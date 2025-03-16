@@ -1,24 +1,27 @@
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
-import { fetchCodeChefPastContests, fetchLeetCodePastContests } from "../controllers/attendedContests.controller.js";
+import {
+  fetchCodeChefPastContests,
+  fetchLeetCodePastContests,
+} from "../controllers/attendedContests.controller.js";
 
 // Helper function to calculate max and current rating from past contests
 const calculateRatingsFromContests = (pastContests) => {
-    if (!pastContests || pastContests.length === 0) {
-      return { currentRating: 0, maxRating: 0 };
-    }
-  
-    // Extract all ratings from past contests
-    const ratings = pastContests.map((contest) => contest.newRating);
-  
-    // Calculate max rating
-    const maxRating = Math.max(...ratings);
-  
-    // Current rating is the rating of the most recent contest
-    const currentRating = ratings[ratings.length - 1];
-  
-    return { currentRating, maxRating };
-  };
+  if (!pastContests || pastContests.length === 0) {
+    return { currentRating: 0, maxRating: 0 };
+  }
+
+  // Extract all ratings from past contests
+  const ratings = pastContests.map((contest) => contest.newRating);
+
+  // Calculate max rating
+  const maxRating = Math.max(...ratings);
+
+  // Current rating is the rating of the most recent contest
+  const currentRating = ratings[ratings.length - 1];
+
+  return { currentRating, maxRating };
+};
 
 // Helper function to fetch CodeChef stats
 const fetchCodeChefStats = async (username) => {
@@ -157,8 +160,7 @@ const fetchLeetcodeStats = async (username) => {
     const user = data.data.matchedUser;
 
     // Extract problems solved
-    const problemsSolved =
-      user.submitStats?.acSubmissionNum?.[0]?.count || 0;
+    const problemsSolved = user.submitStats?.acSubmissionNum?.[0]?.count || 0;
 
     // Extract reputation (ranking)
     const reputation = "NA";
@@ -190,39 +192,44 @@ const fetchLeetcodeStats = async (username) => {
 
 // Main function to fetch all stats
 export const fetchUserStats = async (req, res) => {
-    try {
-      const { lcId, ccId, cfId } = req.body;
-  
-      // Fetch stats from all platforms
-      const [codechefStats, codeforcesStats, leetcodeStats, lcContests, ccContests] = await Promise.all([
-        fetchCodeChefStats(ccId),
-        fetchCodeforcesStats(cfId),
-        fetchLeetcodeStats(lcId),
-        fetchLeetCodePastContests(lcId),
-        fetchCodeChefPastContests(ccId),
-      ]);
-  
-      // Calculate max and current ratings for LeetCode and CodeChef using exported arrays
-      const leetcodeRatings = calculateRatingsFromContests(lcContests);
-      const codechefRatings = calculateRatingsFromContests(ccContests);
-  
-      // Update LeetCode stats with calculated ratings
-      leetcodeStats.currentRating = leetcodeRatings.currentRating;
-      leetcodeStats.maxRating = leetcodeRatings.maxRating;
-  
-      // Update CodeChef stats with calculated ratings
-      codechefStats.maxRating = codechefRatings.maxRating;
-  
-      res.json({
-        status: "success",
-        data: [codechefStats, codeforcesStats, leetcodeStats],
-      });
-    } catch (error) {
-      console.error("Error fetching user stats:", error.message);
-      res.status(500).json({
-        status: "error",
-        message: error.message,
-      });
-    }
-  };
-  
+  try {
+    const { lcId, ccId, cfId } = req.body;
+
+    // Fetch stats from all platforms
+    const [
+      codechefStats,
+      codeforcesStats,
+      leetcodeStats,
+      lcContests,
+      ccContests,
+    ] = await Promise.all([
+      fetchCodeChefStats(ccId),
+      fetchCodeforcesStats(cfId),
+      fetchLeetcodeStats(lcId),
+      fetchLeetCodePastContests(lcId),
+      fetchCodeChefPastContests(ccId),
+    ]);
+
+    // Calculate max and current ratings for LeetCode and CodeChef using exported arrays
+    const leetcodeRatings = calculateRatingsFromContests(lcContests);
+    const codechefRatings = calculateRatingsFromContests(ccContests);
+
+    // Update LeetCode stats with calculated ratings
+    leetcodeStats.currentRating = leetcodeRatings.currentRating;
+    leetcodeStats.maxRating = leetcodeRatings.maxRating;
+
+    // Update CodeChef stats with calculated ratings
+    codechefStats.maxRating = codechefRatings.maxRating;
+
+    res.json({
+      status: "success",
+      data: [codechefStats, codeforcesStats, leetcodeStats],
+    });
+  } catch (error) {
+    console.error("Error fetching user stats:", error.message);
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};

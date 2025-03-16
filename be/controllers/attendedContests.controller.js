@@ -146,21 +146,21 @@ export const fetchAllAttendedContests = async (req, res) => {
 
     const allPastContests = [...lcContests, ...ccContests, ...cfContests];
 
-   // Function to parse date and time into a comparable format
-   const parseDateTime = (dateStr, timeStr) => {
-    const [day, month, year] = dateStr.split("/");
-    const [hours, minutes, seconds] = timeStr.split(":");
-    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-  };
+    // Function to parse date and time into a comparable format
+    const parseDateTime = (dateStr, timeStr) => {
+      const [day, month, year] = dateStr.split("/");
+      const [hours, minutes, seconds] = timeStr.split(":");
+      return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+    };
 
-  // Sort contests by date and time (latest first)
-  allPastContests.sort((a, b) => {
-    const dateTimeA = parseDateTime(a.contestDate, a.contestTime);
-    const dateTimeB = parseDateTime(b.contestDate, b.contestTime);
-    return dateTimeB.localeCompare(dateTimeA); 
-  });
+    // Sort contests by date and time (latest first)
+    allPastContests.sort((a, b) => {
+      const dateTimeA = parseDateTime(a.contestDate, a.contestTime);
+      const dateTimeB = parseDateTime(b.contestDate, b.contestTime);
+      return dateTimeB.localeCompare(dateTimeA);
+    });
 
-  res.json(allPastContests);
+    res.json(allPastContests);
   } catch (error) {
     console.error("Error fetching all past contests:", error);
     res.status(500).json({ message: "Server error" });
