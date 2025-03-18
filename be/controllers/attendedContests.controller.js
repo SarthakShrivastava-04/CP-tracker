@@ -134,6 +134,8 @@ export const fetchCodeChefPastContests = async (ccId) => {
 
 // Merge all past contests data
 export const fetchAllAttendedContests = async (req, res) => {
+  console.log("sent past");
+
   try {
     const { lcId, ccId, cfId } = req.body;
 
@@ -159,7 +161,7 @@ export const fetchAllAttendedContests = async (req, res) => {
       const dateTimeB = parseDateTime(b.contestDate, b.contestTime);
       return dateTimeB.localeCompare(dateTimeA);
     });
-
+    console.log("sent past");
     res.json(allPastContests);
   } catch (error) {
     console.error("Error fetching all past contests:", error);
