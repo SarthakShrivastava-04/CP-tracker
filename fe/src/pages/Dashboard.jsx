@@ -1,21 +1,35 @@
-import { useEffect } from "react"
-import { useStore } from "../lib/store"
-import StatsCard from "../components/comp/Stats"
-import ContestTabs from "../components/comp/ContestTab"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
+import { useEffect } from "react";
+import { useStore } from "../lib/store";
+import StatsCard from "../components/comp/Stats";
+import ContestTabs from "../components/comp/ContestTab";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
 
 const Dashboard = () => {
-  const { user, leetcodeStats, codeforcesStats, codechefStats, fetchAllStats, fetchContests } = useStore()
+  const {
+    user,
+    leetcodeStats,
+    codeforcesStats,
+    codechefStats,
+    fetchAllStats,
+    fetchContests,
+  } = useStore();
 
   useEffect(() => {
     // Fetch stats and contests when dashboard loads
-    fetchAllStats()
-    fetchContests()
-  }, [fetchAllStats, fetchContests])
+    fetchAllStats();
+    fetchContests();
+  }, [fetchAllStats, fetchContests]);
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold tracking-tight">Welcome, {user?.name || "User"}</h1>
+      <h1 className="text-3xl font-bold tracking-tight">
+        Welcome, {user?.name || "User"}
+      </h1>
 
       {/* Stats Section */}
       <section className="space-y-4">
@@ -23,19 +37,19 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatsCard
             title="LeetCode"
-            username={user?.leetcodeUsername}
+            username={user?.leetcode}
             stats={leetcodeStats}
             loading={!leetcodeStats}
           />
           <StatsCard
             title="Codeforces"
-            username={user?.codeforcesUsername}
+            username={user?.codeforces}
             stats={codeforcesStats}
             loading={!codeforcesStats}
           />
           <StatsCard
             title="CodeChef"
-            username={user?.codechefUsername}
+            username={user?.codechef}
             stats={codechefStats}
             loading={!codechefStats}
           />
@@ -63,8 +77,7 @@ const Dashboard = () => {
         </Tabs>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
-
+export default Dashboard;

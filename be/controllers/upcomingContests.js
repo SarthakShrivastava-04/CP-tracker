@@ -187,12 +187,7 @@ export const fetchUpcomingContests = async (req, res) => {
 
     // Sort contests by start time (earliest first)
     allContests.sort((a, b) => a.startTimeUnix - b.startTimeUnix);
-
-    res.json({
-      status: "success",
-      count: allContests.length,
-      data: allContests,
-    });
+    res.json(allContests);
   } catch (error) {
     console.error("Error fetching upcoming contests:", error.message);
     res.status(500).json({

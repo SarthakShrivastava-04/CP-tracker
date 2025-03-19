@@ -3,23 +3,42 @@ import { useStore } from "../lib/store";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
-import { toast } from "sonner"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 const UserForm = () => {
   const { user, updateUsernames } = useStore();
-  const [leetcodeUsername, setLeetcodeUsername] = useState(user?.leetcodeUsername || "");
-  const [codeforcesUsername, setCodeforcesUsername] = useState(user?.codeforcesUsername || "");
-  const [codechefUsername, setCodechefUsername] = useState(user?.codechefUsername || "");
+  const [leetcodeUsername, setLeetcodeUsername] = useState(
+    user?.leetcode || ""
+  );
+  const [codeforcesUsername, setCodeforcesUsername] = useState(
+    user?.codeforces || ""
+  );
+  const [codechefUsername, setCodechefUsername] = useState(
+    user?.codechef || ""
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+    console.log("Submitting form with:", {  leetcodeUsername,
+      codeforcesUsername,
+      codechefUsername});
     try {
-      const result = await updateUsernames(leetcodeUsername, codeforcesUsername, codechefUsername);
+      const result = await updateUsernames(
+        leetcodeUsername,
+        codeforcesUsername,
+        codechefUsername
+      );
 
       if (!result.success) {
         toast({
@@ -48,7 +67,9 @@ const UserForm = () => {
     <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Platform Usernames</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Platform Usernames
+          </CardTitle>
           <CardDescription className="text-gray-500">
             Enter your usernames for the coding platforms to track your stats
           </CardDescription>

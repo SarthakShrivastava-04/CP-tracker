@@ -4,6 +4,7 @@ import {
   fetchCodeChefPastContests,
   fetchLeetCodePastContests,
 } from "../controllers/attendedContests.controller.js";
+import prisma from "../lib/prisma.js";
 
 // Helper function to calculate max and current rating from past contests
 const calculateRatingsFromContests = (pastContests) => {
@@ -222,8 +223,9 @@ export const fetchUserStats = async (req, res) => {
     codechefStats.maxRating = codechefRatings.maxRating;
 
     res.json({
-      status: "success",
-      data: [codechefStats, codeforcesStats, leetcodeStats],
+      codechefStats,
+      codeforcesStats,
+      leetcodeStats,
     });
   } catch (error) {
     console.error("Error fetching user stats:", error.message);
@@ -231,5 +233,47 @@ export const fetchUserStats = async (req, res) => {
       status: "error",
       message: error.message,
     });
+  }
+};
+
+// Update user usernames
+export const updateUsernames = async (req, res) => {
+  console.log(req.userId);
+  try {
+    const { leetcode, codeforces, codechef } = req.body;
+
+    // Validate input
+    if (!leetcode && !codeforces && !codechef) {
+      return res
+        .status(400)
+        .json({ message: "At least one username is required" });
+    }
+
+    // Update user
+    const updatedUser = await prisma.user.update({
+      where: { id: req.userId }, // Find the user by ID
+      data: {
+        leetcode,
+        codeforces,
+        codechef,
+      },
+      select: {
+        id: true,
+        leetcode: true,
+        codeforces: true,
+        codechef: true,
+        email: true,
+        username: true,
+      },
+    });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    console.log("Updated user:", updatedUser);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Error updating user usernames:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

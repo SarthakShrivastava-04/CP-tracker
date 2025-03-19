@@ -4,7 +4,14 @@ import { useStore } from "../lib/store";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
@@ -64,7 +71,9 @@ const Register = () => {
     <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Create an Account</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Create an Account
+          </CardTitle>
           <CardDescription className="text-gray-500">
             Enter your details to get started
           </CardDescription>

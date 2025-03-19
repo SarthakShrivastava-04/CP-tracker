@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import api from "./api";
+import { loginapi } from "./api";
 
 const useStore = create(
   persist(
@@ -25,17 +26,19 @@ const useStore = create(
       // Auth actions
       login: async (email, password) => {
         try {
-          const response = await api.post("/auth/login", { email, password });
+          const response = await loginapi.post("/auth/login", { email, password });
           const { token, user } = response.data;
+          console.log("Login response:", response.data);
+
+          // Save token and user to localStorage
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(user));
 
           set({
             isAuthenticated: true,
             token,
             user,
           });
-
-          // Set token for API calls
-          api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
           return { success: true };
         } catch (error) {
@@ -59,6 +62,10 @@ const useStore = create(
       },
 
       logout: () => {
+        // Clear token and user from localStorage
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
         // Clear auth header
         delete api.defaults.headers.common["Authorization"];
 
@@ -69,22 +76,45 @@ const useStore = create(
         });
       },
 
-      // User actions
-      updateUsernames: async (leetcodeUsername, codeforcesUsername, codechefUsername) => {
-        try {
-          const response = await api.post("/user/update", {
-            leetcodeUsername,
-            codeforcesUsername,
-            codechefUsername,
+      // Initialize auth state from localStorage on app load
+      initializeAuth: async () => {
+        const token = localStorage.getItem("token");
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (token && user) {
+          set({
+            isAuthenticated: true,
+            token,
+            user,
           });
 
+          // Set token for API calls
+          api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+      },
+
+      // User actions
+      updateUsernames: async (leetcode, codeforces, codechef) => {
+        try {
+          const response = await api.post("/user/update", {
+            leetcode,
+            codeforces,
+            codechef,
+          });
+
+          // Update the user object in the store
+          const updatedUser = {
+            ...get().user,
+            leetcode,
+            codeforces,
+            codechef,
+          };
+
+          // Save updated user to localStorage
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+
           set({
-            user: {
-              ...get().user,
-              leetcodeUsername,
-              codeforcesUsername,
-              codechefUsername,
-            },
+            user: updatedUser,
           });
 
           // Fetch stats after updating usernames
@@ -103,25 +133,20 @@ const useStore = create(
       fetchAllStats: async () => {
         const { user } = get();
         if (!user) return;
-        console.log(user);
-
+        console.log("Fetching stats for user:", user);
         try {
           // Fetch stats for all platforms
-          const statsPromises = [];
-
-          if (user.leetcode || user.codechef || user.codeforces) {
-            statsPromises.push(
-              api.post("/stats", { leetcode: user.leetcode, codechef: user.codechef, codeforces: user.codeforces }).then((response) => ({
-                leetcodeStats: response.data,
-              }))
-            );
-          }
-
-          // Wait for all stats to be fetched
-          const statsResults = await Promise.all(statsPromises);
-          const newStats = statsResults.reduce((acc, result) => ({ ...acc, ...result }), {});
-
-          set(newStats);
+          const response = await api.post("/user/stats", {
+            lcId : user.leetcode,
+            ccId: user.codechef,
+            cfId: user.codeforces,
+          });
+          console.log("Stats response:", response.data);
+          set({
+            leetcodeStats: response.data.leetcodeStats,
+            codechefStats: response.data.codechefStats,
+            codeforcesStats: response.data.codeforcesStats,
+          });
         } catch (error) {
           console.error("Error fetching stats:", error);
         }
@@ -130,13 +155,17 @@ const useStore = create(
       fetchContests: async () => {
         const { user } = get();
         if (!user) return;
-
+        console.log("Fetching contests for user:", user);
         try {
           const [upcomingResponse, pastResponse] = await Promise.all([
             api.get("/contests/upcoming"),
-            api.post("/contests/past", {leetcode, codechef, codeforces}),
+            api.post("/contests/past", {
+              lcId: user.leetcode,
+              ccId: user.codechef,
+              cfId: user.codeforces,
+            }),
           ]);
-
+          console.log("Contests response:", upcomingResponse.data, pastResponse.data);
           set({
             upcomingContests: upcomingResponse.data,
             pastContests: pastResponse.data,

@@ -69,10 +69,12 @@ export const login = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Secure in production
+        sameSite: "strict",
         maxAge: 1000 * 60 * 60 * 24 * 10, // 10 days
       })
       .status(200)
-      .json(userInfo);
+      .json({ user: userInfo, token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Failed to login!" });

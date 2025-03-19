@@ -23,9 +23,13 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b ${scrolled ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" : "bg-background"}`}
+      className={`sticky top-0 z-50 w-full border-b ${
+        scrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          : "bg-background"
+      }`}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between mx-auto">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link to="/" className="text-xl font-bold">
@@ -57,17 +61,33 @@ const Navbar = () => {
             </>
           )}
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
-            {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+            {theme === "dark" ? (
+              <SunIcon className="h-5 w-5" />
+            ) : (
+              <MoonIcon className="h-5 w-5" />
+            )}
           </Button>
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
-            {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+            {theme === "dark" ? (
+              <SunIcon className="h-5 w-5" />
+            ) : (
+              <MoonIcon className="h-5 w-5" />
+            )}
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <XIcon className="h-5 w-5" />
+            ) : (
+              <MenuIcon className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </div>
@@ -83,7 +103,11 @@ const Navbar = () => {
                     Profile
                   </Button>
                 </Link>
-                <Button variant="ghost" onClick={logout} className="w-full justify-start">
+                <Button
+                  variant="ghost"
+                  onClick={logout}
+                  className="w-full justify-start"
+                >
                   Logout
                 </Button>
               </>

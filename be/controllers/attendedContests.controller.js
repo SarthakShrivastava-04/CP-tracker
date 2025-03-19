@@ -135,10 +135,10 @@ export const fetchCodeChefPastContests = async (ccId) => {
 // Merge all past contests data
 export const fetchAllAttendedContests = async (req, res) => {
   console.log("sent past");
+  const { lcId, ccId, cfId } = req.body;
+  console.log(req.body);
 
   try {
-    const { lcId, ccId, cfId } = req.body;
-
     // Fetch data from all platforms
     const [lcContests, ccContests, cfContests] = await Promise.all([
       fetchLeetCodePastContests(lcId),
@@ -161,7 +161,7 @@ export const fetchAllAttendedContests = async (req, res) => {
       const dateTimeB = parseDateTime(b.contestDate, b.contestTime);
       return dateTimeB.localeCompare(dateTimeA);
     });
-    console.log("sent past");
+    // console.log(allPastContests);
     res.json(allPastContests);
   } catch (error) {
     console.error("Error fetching all past contests:", error);

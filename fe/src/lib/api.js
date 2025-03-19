@@ -3,6 +3,11 @@ import axios from "axios";
 // Create an Axios instance
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
+  withCredentials: true,
+});
+
+export const loginapi = axios.create({
+  baseURL: "http://localhost:3000/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,7 +17,9 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     // Get token from localStorage
-    const storedState = JSON.parse(localStorage.getItem("contest-tracker-storage") || "{}");
+    const storedState = JSON.parse(
+      localStorage.getItem("contest-tracker-storage") || "{}"
+    );
     const token = storedState.state?.token;
 
     // Add token to headers if it exists

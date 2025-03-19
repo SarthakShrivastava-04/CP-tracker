@@ -3,7 +3,15 @@ import prisma from "../lib/prisma.js";
 // Bookmark or unbookmark a contest
 export const bookmarkContest = async (req, res) => {
   try {
-    const { userId, contestName, rating, rank, platform, contestDate, contestTime } = req.body;
+    const {
+      userId,
+      contestName,
+      rating,
+      rank,
+      platform,
+      contestDate,
+      contestTime,
+    } = req.body;
 
     // Validate required fields
     if (!userId || !contestName || !platform || !contestDate || !contestTime) {
@@ -64,24 +72,24 @@ export const bookmarkContest = async (req, res) => {
 
 // Get all bookmarked contests for a user
 export const getBookmarkedContests = async (req, res) => {
-    try {
-      const { userId } = req.params;
-  
-      // Fetch all bookmarked contests for the user
-      const bookmarkedContests = await prisma.savedContests.findMany({
-        where: { userId },
-        orderBy: { createdAt: "desc" }, // Sort by creation date (latest first)
-      });
-  
-      res.json({
-        status: "success",
-        data: bookmarkedContests,
-      });
-    } catch (error) {
-      console.error("Error fetching bookmarked contests:", error.message);
-      res.status(500).json({
-        status: "error",
-        message: error.message,
-      });
-    }
-  };
+  try {
+    const { userId } = req.params;
+
+    // Fetch all bookmarked contests for the user
+    const bookmarkedContests = await prisma.savedContests.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" }, // Sort by creation date (latest first)
+    });
+
+    res.json({
+      status: "success",
+      data: bookmarkedContests,
+    });
+  } catch (error) {
+    console.error("Error fetching bookmarked contests:", error.message);
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};

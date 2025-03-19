@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full border-t py-6 bg-background">
-      <div className="container flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+      <div className="container flex flex-col md:flex-row items-center justify-between mx-auto gap-4 md:gap-0">
         {/* Copyright Text */}
         <p className="text-sm text-gray-500">
           © {currentYear} Contest Tracker. All rights reserved.
