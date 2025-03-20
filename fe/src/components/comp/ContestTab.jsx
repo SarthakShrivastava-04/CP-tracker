@@ -15,7 +15,7 @@ const ContestTabs = ({ type }) => {
     fetchBookmarkedContests,
     toggleBookmark,
     fetchContests,
-    user
+    user,
   } = useStore();
 
   const [filteredContests, setFilteredContests] = useState([]);
@@ -46,7 +46,7 @@ const ContestTabs = ({ type }) => {
     };
 
     fetchData();
-  }, [type, fetchContests, fetchBookmarkedContests]);
+  }, [type, fetchContests, fetchBookmarkedContests, user]);
 
   // Filter contests based on selected platforms
   useEffect(() => {
@@ -88,7 +88,7 @@ const ContestTabs = ({ type }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <Loader2 className="h-8 w-8 animate-spin text-zinc-900 dark:text-white" />
       </div>
     );
   }
@@ -103,8 +103,14 @@ const ContestTabs = ({ type }) => {
               id={platform}
               checked={selectedPlatforms.includes(platform)}
               onCheckedChange={() => handlePlatformFilterChange(platform)}
+              className="border-zinc-900 dark:border-white data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-white"
             />
-            <Label htmlFor={platform}>{platform}</Label>
+            <Label
+              htmlFor={platform}
+              className="text-zinc-900 dark:text-white"
+            >
+              {platform}
+            </Label>
           </div>
         ))}
       </div>
@@ -112,7 +118,7 @@ const ContestTabs = ({ type }) => {
       {/* Contest List */}
       {filteredContests.length === 0 ? (
         <div className="text-center py-8">
-          <p className="text-muted-foreground">No contests found</p>
+          <p className="text-zinc-500 dark:text-zinc-400">No contests found</p>
         </div>
       ) : (
         <div className="space-y-4">

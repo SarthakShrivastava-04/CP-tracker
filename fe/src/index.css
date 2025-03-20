@@ -1,7 +1,5 @@
 @import "tailwindcss";
-
 @plugin "tailwindcss-animate";
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -10,54 +8,55 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #333; /* Gray for fonts */
-  background-color: #fff; /* White background */
+  color: #18181b; /* Zinc-900 for fonts */
+  background-color: #ffffff; /* White background */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: #fff; /* White background */
-  --foreground: #333; /* Gray for fonts */
-  --card: #fff; /* White card */
-  --card-foreground: #333; /* Gray for card text */
-  --popover: #fff; /* White popover */
-  --popover-foreground: #333; /* Gray for popover text */
-  --primary: #000; /* Black primary */
-  --primary-foreground: #fff; /* White text on primary */
-  --secondary: #333; /* Gray secondary */
-  --secondary-foreground: #fff; /* White text on secondary */
-  --muted: #ccc; /* Light gray muted */
-  --muted-foreground: #333; /* Gray text on muted */
-  --accent: #ccc; /* Light gray accent */
-  --accent-foreground: #333; /* Gray text on accent */
-  --destructive: #666; /* Dark gray destructive */
-  --border: #ccc; /* Light gray border */
-  --input: #ccc; /* Light gray input */
-  --ring: #999; /* Medium gray ring */
-  --chart-1: #666; /* Dark gray chart */
-  --chart-2: #999; /* Medium gray chart */
-  --chart-3: #ccc; /* Light gray chart */
-  --chart-4: #333; /* Gray chart */
-  --chart-5: #000; /* Black chart */
-  --sidebar: #fff; /* White sidebar */
-  --sidebar-foreground: #333; /* Gray text on sidebar */
-  --sidebar-primary: #000; /* Black primary on sidebar */
-  --sidebar-primary-foreground: #fff; /* White text on primary sidebar */
-  --sidebar-accent: #ccc; /* Light gray accent on sidebar */
-  --sidebar-accent-foreground: #333; /* Gray text on accent sidebar */
-  --sidebar-border: #ccc; /* Light gray border on sidebar */
-  --sidebar-ring: #999; /* Medium gray ring on sidebar */
+  --background: #ffffff; /* White background */
+  --foreground: #18181b; /* Zinc-900 text */
+  --card: #ffffff; /* White card */
+  --card-foreground: #18181b; /* Zinc-900 text on card */
+  --popover: #ffffff; /* White popover */
+  --popover-foreground: #18181b; /* Zinc-900 text on popover */
+  --primary: #18181b; /* Zinc-900 primary */
+  --primary-foreground: #ffffff; /* White text on primary */
+  --secondary: #3f3f46; /* Zinc-800 secondary */
+  --secondary-foreground: #ffffff; /* White text on secondary */
+  --muted: #d4d4d8; /* Zinc-200 muted */
+  --muted-foreground: #3f3f46; /* Zinc-800 text on muted */
+  --accent: #d4d4d8; /* Zinc-200 accent */
+  --accent-foreground: #3f3f46; /* Zinc-800 text on accent */
+  --destructive: #71717a; /* Zinc-600 destructive */
+  --border: #d4d4d8; /* Zinc-200 border */
+  --input: #ffffff; /* White input */
+  --ring: #3f3f46; /* Zinc-800 ring */
+  --chart-1: #71717a; /* Zinc-600 chart */
+  --chart-2: #a1a1aa; /* Zinc-500 chart */
+  --chart-3: #d4d4d8; /* Zinc-200 chart */
+  --chart-4: #3f3f46; /* Zinc-800 chart */
+  --chart-5: #18181b; /* Zinc-900 chart */
+  --sidebar: #ffffff; /* White sidebar */
+  --sidebar-foreground: #3f3f46; /* Zinc-800 text on sidebar */
+  --sidebar-primary: #18181b; /* Zinc-900 primary on sidebar */
+  --sidebar-primary-foreground: #ffffff; /* White text on primary sidebar */
+  --sidebar-accent: #d4d4d8; /* Zinc-200 accent on sidebar */
+  --sidebar-accent-foreground: #3f3f46; /* Zinc-800 text on accent sidebar */
+  --sidebar-border: #d4d4d8; /* Zinc-200 border on sidebar */
+  --sidebar-ring: #3f3f46; /* Zinc-800 ring on sidebar */
 }
 
 a {
   font-weight: 600;
-  color: #333; /* Gray for links */
+  color: #3f3f46; /* Zinc-800 for links */
   text-decoration: inherit;
+  transition: color 0.2s ease-in-out;
 }
 a:hover {
-  color: #000; /* Black on hover */
+  color: #18181b; /* Zinc-900 on hover */
 }
 
 body {
@@ -81,12 +80,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #333; /* Gray button */
+  background-color: #18181b;
+  color: #ffffff; /* White text */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 button:hover {
-  border-color: #000; /* Black border on hover */
+  background-color: #18181b; /* Zinc-900 on hover */
 }
 button:focus,
 button:focus-visible {
@@ -95,49 +95,50 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #333; /* Gray text */
-    background-color: #fff; /* White background */
+    color: #18181b; /* Zinc-900 text */
+    background-color: #ffffff; /* White background */
   }
   a:hover {
-    color: #000; /* Black on hover */
+    color: #18181b; /* Zinc-900 on hover */
   }
   button {
-    background-color: #ccc; /* Light gray button */
+    /* background-color: #3f3f46; Zinc-800 button */
+    background-color: #18181bef; 
   }
 }
 
 .dark {
-  --background: #000; /* Black background */
-  --foreground: #fff; /* White text */
-  --card: #333; /* Gray card */
-  --card-foreground: #fff; /* White text on card */
-  --popover: #333; /* Gray popover */
-  --popover-foreground: #fff; /* White text on popover */
-  --primary: #fff; /* White primary */
-  --primary-foreground: #000; /* Black text on primary */
-  --secondary: #666; /* Dark gray secondary */
-  --secondary-foreground: #fff; /* White text on secondary */
-  --muted: #999; /* Medium gray muted */
-  --muted-foreground: #fff; /* White text on muted */
-  --accent: #999; /* Medium gray accent */
-  --accent-foreground: #fff; /* White text on accent */
-  --destructive: #ccc; /* Light gray destructive */
-  --border: #666; /* Dark gray border */
-  --input: #666; /* Dark gray input */
-  --ring: #999; /* Medium gray ring */
-  --chart-1: #ccc; /* Light gray chart */
-  --chart-2: #999; /* Medium gray chart */
-  --chart-3: #666; /* Dark gray chart */
-  --chart-4: #333; /* Gray chart */
-  --chart-5: #000; /* Black chart */
-  --sidebar: #333; /* Gray sidebar */
-  --sidebar-foreground: #fff; /* White text on sidebar */
-  --sidebar-primary: #fff; /* White primary on sidebar */
-  --sidebar-primary-foreground: #000; /* Black text on primary sidebar */
-  --sidebar-accent: #999; /* Medium gray accent on sidebar */
-  --sidebar-accent-foreground: #fff; /* White text on accent sidebar */
-  --sidebar-border: #666; /* Dark gray border on sidebar */
-  --sidebar-ring: #999; /* Medium gray ring on sidebar */
+  --background: #18181b; /* Zinc-900 background */
+  --foreground: #f4f4f5; /* Zinc-50 text */
+  --card: #3f3f46; /* Zinc-800 card */
+  --card-foreground: #f4f4f5; /* Zinc-50 text on card */
+  --popover: #3f3f46; /* Zinc-800 popover */
+  --popover-foreground: #f4f4f5; /* Zinc-50 text on popover */
+  --primary: #f4f4f5; /* Zinc-50 primary */
+  --primary-foreground: #18181b; /* Zinc-900 text on primary */
+  --secondary: #71717a; /* Zinc-600 secondary */
+  --secondary-foreground: #f4f4f5; /* Zinc-50 text on secondary */
+  --muted: #a1a1aa; /* Zinc-500 muted */
+  --muted-foreground: #f4f4f5; /* Zinc-50 text on muted */
+  --accent: #a1a1aa; /* Zinc-500 accent */
+  --accent-foreground: #f4f4f5; /* Zinc-50 text on accent */
+  --destructive: #d4d4d8; /* Zinc-200 destructive */
+  --border: #71717a; /* Zinc-600 border */
+  --input: #3f3f46; /* Zinc-800 input */
+  --ring: #71717a; /* Zinc-600 ring */
+  --chart-1: #d4d4d8; /* Zinc-200 chart */
+  --chart-2: #a1a1aa; /* Zinc-500 chart */
+  --chart-3: #71717a; /* Zinc-600 chart */
+  --chart-4: #3f3f46; /* Zinc-800 chart */
+  --chart-5: #18181b; /* Zinc-900 chart */
+  --sidebar: #3f3f46; /* Zinc-800 sidebar */
+  --sidebar-foreground: #f4f4f5; /* Zinc-50 text on sidebar */
+  --sidebar-primary: #f4f4f5; /* Zinc-50 primary on sidebar */
+  --sidebar-primary-foreground: #18181b; /* Zinc-900 text on primary sidebar */
+  --sidebar-accent: #a1a1aa; /* Zinc-500 accent on sidebar */
+  --sidebar-accent-foreground: #f4f4f5; /* Zinc-50 text on accent sidebar */
+  --sidebar-border: #71717a; /* Zinc-600 border on sidebar */
+  --sidebar-ring: #71717a; /* Zinc-600 ring on sidebar */
 }
 
 @theme inline {

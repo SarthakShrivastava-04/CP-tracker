@@ -25,14 +25,14 @@ const Navbar = () => {
     <header
       className={`sticky top-0 z-50 w-full border-b ${
         scrolled
-          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-          : "bg-background"
+          ? "bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:bg-zinc-900/95 dark:supports-[backdrop-filter]:bg-zinc-900/60"
+          : "bg-white dark:bg-zinc-900"
       }`}
     >
       <div className="container flex h-16 items-center justify-between mx-auto">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link to="/" className="text-xl font-bold">
+          <Link to="/" className="text-xl font-bold text-zinc-900 dark:text-white">
             Contest Tracker
           </Link>
         </div>
@@ -42,25 +42,34 @@ const Navbar = () => {
           {isAuthenticated ? (
             <>
               <Link to="/profile">
-                <Button variant="ghost" className="flex items-center gap-2">
+                <Button variant="ghost" className="flex items-center gap-2 text-zinc-900 dark:text-white">
                   <span className="font-medium">{user?.username}</span>
                 </Button>
               </Link>
-              <Button variant="ghost" onClick={logout}>
+              <Button variant="ghost" onClick={logout} className="text-zinc-900 dark:text-white">
                 Logout
               </Button>
             </>
           ) : (
             <>
               <Link to="/login">
-                <Button variant="ghost">Login</Button>
+                <Button variant="ghost" className="text-zinc-900 dark:text-white">
+                  Login
+                </Button>
               </Link>
               <Link to="/register">
-                <Button variant="default">Register</Button>
+                <Button variant="default" className="bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100">
+                  Register
+                </Button>
               </Link>
             </>
           )}
-          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="text-zinc-900 dark:text-white"
+          >
             {theme === "dark" ? (
               <SunIcon className="h-5 w-5" />
             ) : (
@@ -71,7 +80,12 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="text-zinc-900 dark:text-white"
+          >
             {theme === "dark" ? (
               <SunIcon className="h-5 w-5" />
             ) : (
@@ -82,6 +96,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-zinc-900 dark:text-white"
           >
             {isMobileMenuOpen ? (
               <XIcon className="h-5 w-5" />
@@ -94,19 +109,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t p-4 bg-background">
+        <div className="md:hidden border-t p-4 bg-white dark:bg-zinc-900">
           <nav className="flex flex-col space-y-4">
             {isAuthenticated ? (
               <>
                 <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start text-zinc-900 dark:text-white">
                     Profile
                   </Button>
                 </Link>
                 <Button
                   variant="ghost"
                   onClick={logout}
-                  className="w-full justify-start"
+                  className="w-full justify-start text-zinc-900 dark:text-white"
                 >
                   Logout
                 </Button>
@@ -114,12 +129,12 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start text-zinc-900 dark:text-white">
                     Login
                   </Button>
                 </Link>
                 <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="default" className="w-full justify-start">
+                  <Button variant="default" className="w-full justify-start bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100">
                     Register
                   </Button>
                 </Link>

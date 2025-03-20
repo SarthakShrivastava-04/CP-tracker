@@ -68,13 +68,13 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
-      <Card className="w-full max-w-md shadow-lg">
+    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-zinc-900">
+      <Card className="w-full max-w-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg shadow-zinc-200 dark:shadow-zinc-800">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">
+          <CardTitle className="text-3xl font-bold text-zinc-900 dark:text-white">
             Create an Account
           </CardTitle>
-          <CardDescription className="text-gray-500">
+          <CardDescription className="text-zinc-500 dark:text-zinc-400">
             Enter your details to get started
           </CardDescription>
         </CardHeader>
@@ -82,7 +82,7 @@ const Register = () => {
           <CardContent className="space-y-6">
             {/* Name Input */}
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-gray-700">
+              <Label htmlFor="name" className="text-zinc-900 dark:text-white">
                 Name
               </Label>
               <Input
@@ -92,13 +92,13 @@ const Register = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-primary"
+                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
               />
             </div>
 
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-gray-700">
+              <Label htmlFor="email" className="text-zinc-900 dark:text-white">
                 Email
               </Label>
               <Input
@@ -108,13 +108,13 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-primary"
+                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
               />
             </div>
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-gray-700">
+              <Label htmlFor="password" className="text-zinc-900 dark:text-white">
                 Password
               </Label>
               <Input
@@ -123,13 +123,13 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-primary"
+                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
               />
             </div>
 
             {/* Confirm Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="text-gray-700">
+              <Label htmlFor="confirmPassword" className="text-zinc-900 dark:text-white">
                 Confirm Password
               </Label>
               <Input
@@ -138,13 +138,17 @@ const Register = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-primary"
+                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             {/* Submit Button */}
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 transition-all duration-300"
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -156,9 +160,12 @@ const Register = () => {
             </Button>
 
             {/* Login Link */}
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">
               Already have an account?{" "}
-              <Link to="/login" className="text-primary hover:underline">
+              <Link
+                to="/login"
+                className="text-zinc-900 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300 underline transition-all duration-300"
+              >
                 Login
               </Link>
             </p>
