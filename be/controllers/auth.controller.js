@@ -45,8 +45,9 @@ export const login = async (req, res) => {
 
   try {
     // Find user by email
-    const user = await prisma.user.findUnique({ where: { email } });
 
+    const user = await prisma.user.findUnique({ where: { email } });
+  
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials!" });
     }
@@ -57,7 +58,7 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: "Invalid credentials!" });
     }
-
+     
     // Generate JWT
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "10d",
@@ -65,12 +66,12 @@ export const login = async (req, res) => {
 
     // Remove password before sending response
     const { password: storedPassword, ...userInfo } = user;
-
+    
     res
       .cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // Secure in production
-        sameSite: "strict",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", 
         maxAge: 1000 * 60 * 60 * 24 * 10, // 10 days
       })
       .status(200)

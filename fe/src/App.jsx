@@ -138,7 +138,7 @@ function App() {
   // Debugging
   useEffect(() => {
     console.log("User:", user);
-    console.log("Has provided usernames:", hasProvidedUsernames());
+    console.log("isauthenticated:", isAuthenticated);
   }, [user]);
 
   // Show a loading spinner while initializing

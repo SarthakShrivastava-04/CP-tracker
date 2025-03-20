@@ -63,6 +63,8 @@ const UserForm = () => {
     }
   };
 
+  
+
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
       <Card className="w-full max-w-md shadow-lg">
@@ -87,7 +89,7 @@ const UserForm = () => {
                 placeholder="leetcode_user"
                 value={leetcodeUsername}
                 onChange={(e) => setLeetcodeUsername(e.target.value)}
-                required
+                // required
                 className="focus:ring-2 focus:ring-primary"
               />
             </div>
@@ -103,7 +105,7 @@ const UserForm = () => {
                 placeholder="codeforces_user"
                 value={codeforcesUsername}
                 onChange={(e) => setCodeforcesUsername(e.target.value)}
-                required
+                // required
                 className="focus:ring-2 focus:ring-primary"
               />
             </div>
@@ -119,7 +121,7 @@ const UserForm = () => {
                 placeholder="codechef_user"
                 value={codechefUsername}
                 onChange={(e) => setCodechefUsername(e.target.value)}
-                required
+                // required
                 className="focus:ring-2 focus:ring-primary"
               />
             </div>
