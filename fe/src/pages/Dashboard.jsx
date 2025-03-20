@@ -22,8 +22,8 @@ const Dashboard = () => {
   useEffect(() => {
     // Fetch stats and contests when dashboard loads
     fetchAllStats();
-    fetchContests();
-  }, [fetchAllStats, fetchContests]);
+
+  }, [fetchAllStats]);
 
   return (
     <div className="space-y-8">

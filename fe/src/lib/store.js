@@ -49,9 +49,9 @@ const useStore = create(
         }
       },
 
-      register: async (name, email, password) => {
+      register: async (username, email, password) => {
         try {
-          const response = await api.post("/auth/register", { name, email, password });
+          const response = await api.post("/auth/register", { username, email, password });
           return { success: true };
         } catch (error) {
           return {

@@ -119,54 +119,6 @@
 // export default StatsCard;
 
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { Trophy, Award, Star } from "lucide-react";
-
-const StatsCard = ({ title, username, stats, loading }) => {
-  const platformColors = {
-    LeetCode: "bg-yellow-300 text-black border-yellow-500",
-    CodeForces: "bg-blue-300 text-black border-blue-500",
-    CodeChef: "bg-purple-300 text-black border-purple-500",
-  };
-
-  const renderIcon = () => {
-    switch (title) {
-      case "LeetCode":
-        return <Trophy className="h-6 w-6 text-yellow-600" />;
-      case "CodeForces":
-        return <Award className="h-6 w-6 text-blue-600" />;
-      case "CodeChef":
-        return <Star className="h-6 w-6 text-purple-600" />;
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <Card
-      className={`p-4 border-4 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ${platformColors[title]}`}
-    >
-      <CardHeader className="flex items-center gap-3">
-        {renderIcon()}
-        <CardTitle className="text-2xl font-bold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="text-lg space-y-2">
-        <p className="font-semibold">@{username}</p>
-        <p>🏆 Max Rating: <span className="font-bold">{stats.currentRating || "N/A"}</span></p>
-        <p>📈 Current Rating: <span className="font-bold">{stats.currentRating || "N/A"}</span></p> 
-        <p>💡 Problems Solved: <span className="font-bold">{stats.problemsSolved || "N/A"}</span></p>
-      </CardContent>
-    </Card>
-  );
-};
-
-export default StatsCard;
-
 
 // import {
 //   Card,
@@ -306,45 +258,45 @@ export default StatsCard;
 
 // export default StatsCard;
 
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
-// const platformStyles = {
-//   leetcode: { emoji: "🏆", gradient: "bg-gradient-to-br from-yellow-300 to-yellow-500" },
-//   codeforces: { emoji: "🎖️", gradient: "bg-gradient-to-br from-blue-300 to-blue-500" },
-//   codechef: { emoji: "⭐", gradient: "bg-gradient-to-br from-green-300 to-green-500" },
-//   default: { emoji: "👤", gradient: "bg-gradient-to-br from-gray-300 to-gray-500" },
-// };
+const platformStyles = {
+  leetcode: { emoji: "🏆", gradient: "bg-gradient-to-br from-yellow-300 to-yellow-500" },
+  codeforces: { emoji: "🎖️", gradient: "bg-gradient-to-br from-blue-300 to-blue-500" },
+  codechef: { emoji: "⭐", gradient: "bg-gradient-to-br from-green-300 to-green-500" },
+  default: { emoji: "👤", gradient: "bg-gradient-to-br from-gray-300 to-gray-500" },
+};
 
-// const StatsCard = ({ title, username, stats, loading }) => {
-//   const platform = platformStyles[title.toLowerCase()] || platformStyles.default;
+const StatsCard = ({ title, username, stats, loading }) => {
+  const platform = platformStyles[title.toLowerCase()] || platformStyles.default;
 
-//   return (
-//     <motion.div
-//       className={`p-5 rounded-2xl shadow-xl ${platform.gradient} text-white w-[250px] sm:w-[300px] mx-auto`}
-//       whileHover={{ scale: 1.05 }}
-//     >
-//       <div className="flex items-center gap-3 text-2xl font-bold">
-//         <span className="text-4xl">{platform.emoji}</span>
-//         {title}
-//       </div>
-//       <p className="text-sm text-white/80 mt-1">{username ? `@${username}` : "No username"}</p>
+  return (
+    <motion.div
+      className={`p-5 rounded-2xl shadow-xl ${platform.gradient} text-white w-[250px] sm:w-[300px] mx-auto`}
+      whileHover={{ scale: 1.05 }}
+    >
+      <div className="flex items-center gap-3 text-2xl font-bold">
+        <span className="text-4xl">{platform.emoji}</span>
+        {title}
+      </div>
+      <p className="text-sm text-white/80 mt-1">{username ? `@${username}` : "No username"}</p>
       
-//       <div className="mt-3 space-y-2">
-//         {loading ? (
-//           <p className="animate-pulse text-white/80">Loading stats...</p>
-//         ) : stats ? (
-//           Object.entries(stats).map(([key, value]) => (
-//             <div key={key} className="flex justify-between bg-white/20 p-2 rounded-lg">
-//               <span className="capitalize">{key.replace(/([A-Z])/g, " $1")}:</span>
-//               <span className="font-semibold">{value || "N/A"}</span>
-//             </div>
-//           ))
-//         ) : (
-//           <p className="text-white/80">No stats available</p>
-//         )}
-//       </div>
-//     </motion.div>
-//   );
-// };
+      <div className="mt-3 space-y-2">
+        {loading ? (
+          <p className="animate-pulse text-white/80">Loading stats...</p>
+        ) : stats ? (
+          Object.entries(stats).map(([key, value]) => (
+            <div key={key} className="flex justify-between bg-white/20 p-2 rounded-lg">
+              <span className="capitalize">{key.replace(/([A-Z])/g, " $1")}:</span>
+              <span className="font-semibold">{value || "N/A"}</span>
+            </div>
+          ))
+        ) : (
+          <p className="text-white/80">No stats available</p>
+        )}
+      </div>
+    </motion.div>
+  );
+};
 
-// export default StatsCard;
+export default StatsCard;
