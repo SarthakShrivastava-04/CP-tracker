@@ -466,25 +466,31 @@ const useStore = create(
 
       // Bookmark actions
       bookmarkContest: async (contest) => {
+        console.log("Bookmarking contest:", contest);
         try {
-          const { userId, contestName, rating, rank, platform, contestDate, contestTime } = contest;
-
+          // Destructure contest properties and rename newRating to rating
+          const { contestName, newRating: rating, rank, platform, contestDate, contestTime } = contest;
+      
+          // Get userId from the store
+          const userId = get().user.id;
+      
+          // Make the API request
           const response = await api.post("/contests/bookmark", {
             userId,
             contestName,
-            rating,
+            rating, 
             rank,
             platform,
             contestDate,
             contestTime,
           });
-
+      
           // Update local bookmarked contests
           const { bookmarkedContests } = get();
           const isBookmarked = bookmarkedContests.some(
             (c) => c.contestName === contestName && c.userId === userId
           );
-
+      
           if (isBookmarked) {
             // Remove from bookmarked contests
             set({
@@ -495,10 +501,13 @@ const useStore = create(
           } else {
             // Add to bookmarked contests
             set({
-              bookmarkedContests: [...bookmarkedContests, contest],
+              bookmarkedContests: [
+                ...bookmarkedContests,
+                response.data,
+              ],
             });
           }
-
+          console.log("Updated bookmarkedContests:", get().bookmarkedContests);
           return { success: true, data: response.data };
         } catch (error) {
           return {
@@ -509,6 +518,7 @@ const useStore = create(
       },
 
       fetchBookmarkedContests: async (userId) => {
+        console.log("Fetching bookmarked contests for user:", userId);
         try {
           const response = await api.get(`/contests/bookmarked/${userId}`);
           set({

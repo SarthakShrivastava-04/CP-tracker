@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/upcoming", fetchUpcomingContests);
 router.post("/past", auth, fetchAllAttendedContests);
-router.get("/bookmarks", auth, getBookmarkedContests);
-router.post("/bookmarks", auth, bookmarkContest);
+router.post("/bookmark", auth, bookmarkContest);
+router.get("/bookmarked/:userId", auth,getBookmarkedContests);
 
 export default router;

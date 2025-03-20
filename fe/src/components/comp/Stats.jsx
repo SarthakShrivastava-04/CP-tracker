@@ -1,298 +1,89 @@
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-// } from "../ui/card";
-// import { Skeleton } from "../ui/skeleton";
-// import { Trophy, Award, Star } from "lucide-react";
-
-// const StatsCard = ({ title, username, stats, loading }) => {
-//   // Platform-specific rendering
-//   const renderStats = () => {
-//     if (loading) {
-//       return (
-//         <div className="space-y-2">
-//           <Skeleton className="h-4 w-full" />
-//           <Skeleton className="h-4 w-3/4" />
-//           <Skeleton className="h-4 w-1/2" />
-//         </div>
-//       );
-//     }
-
-//     if (!stats) {
-//       return <p className="text-muted-foreground">No stats available</p>;
-//     }
-
-//     switch (title.toLowerCase()) {
-//       case "leetcode":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Max rating:</span>
-//               <span className="font-medium">{stats.maxRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Problems Solved:</span>
-//               <span className="font-medium">{stats.problemsSolved || 0}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Current Rating:</span>
-//               <span className="font-medium">
-//                 {stats.currentRating || "N/A"}
-//               </span>
-//             </div>
-//           </div>
-//         );
-//       case "codeforces":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Rating:</span>
-//               <span className="font-medium">{stats.rating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Rank:</span>
-//               <span className="font-medium">{stats.rank || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Max Rating:</span>
-//               <span className="font-medium">{stats.maxRating || "N/A"}</span>
-//             </div>
-//           </div>
-//         );
-//       case "codechef":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Rating:</span>
-//               <span className="font-medium">{stats.rating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Stars:</span>
-//               <span className="font-medium">{stats.stars || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Global Rank:</span>
-//               <span className="font-medium">{stats.globalRank || "N/A"}</span>
-//             </div>
-//           </div>
-//         );
-//       default:
-//         return <p className="text-muted-foreground">No stats available</p>;
-//     }
-//   };
-
-//   // Platform-specific icon
-//   const renderIcon = () => {
-//     switch (title.toLowerCase()) {
-//       case "leetcode":
-//         return <Trophy className="h-5 w-5" />;
-//       case "codeforces":
-//         return <Award className="h-5 w-5" />;
-//       case "codechef":
-//         return <Star className="h-5 w-5" />;
-//       default:
-//         return null;
-//     }
-//   };
-
-//   return (
-//     <Card className="h-[25vh] overflow-auto">
-//       <CardHeader className="pb-2">
-//         <div className="flex items-center justify-between">
-//           <CardTitle className="text-xl flex items-center gap-2">
-//             {renderIcon()}
-//             {title}
-//           </CardTitle>
-//         </div>
-//         <CardDescription>
-//           {username ? `@${username}` : "No username provided"}
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent>{renderStats()}</CardContent>
-//     </Card>
-//   );
-// };
-
-// export default StatsCard;
-
-
-
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-// } from "../ui/card";
-// import { Skeleton } from "../ui/skeleton";
-// import { Trophy, Award, Star, User } from "lucide-react";
-
-// const StatsCard = ({ title, username, stats, loading }) => {
-//   // Platform-specific rendering
-//   const renderStats = () => {
-//     if (loading) {
-//       return (
-//         <div className="space-y-2">
-//           <Skeleton className="h-4 w-full" />
-//           <Skeleton className="h-4 w-3/4" />
-//           <Skeleton className="h-4 w-1/2" />
-//         </div>
-//       );
-//     }
-
-//     if (!stats) {
-//       return <p className="text-muted-foreground">No stats available</p>;
-//     }
-
-//     switch (title.toLowerCase()) {
-//       case "leetcode":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Max Rating:</span>
-//               <span className="font-medium">{stats.maxRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Problems Solved:</span>
-//               <span className="font-medium">{stats.problemsSolved || 0}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Current Rating:</span>
-//               <span className="font-medium">
-//                 {stats.currentRating || "N/A"}
-//               </span>
-//             </div>
-//           </div>
-//         );
-//       case "codeforces":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Current Rating:</span>
-//               <span className="font-medium">{stats.currentRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Max Rating:</span>
-//               <span className="font-medium">{stats.maxRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Problems Solved:</span>
-//               <span className="font-medium">{stats.problemsSolved || 0}</span>
-//             </div>
-//           </div>
-//         );
-//       case "codechef":
-//         return (
-//           <div className="space-y-2">
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Current Rating:</span>
-//               <span className="font-medium">{stats.currentRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Max Rating:</span>
-//               <span className="font-medium">{stats.maxRating || "N/A"}</span>
-//             </div>
-//             <div className="flex items-center justify-between">
-//               <span className="text-muted-foreground">Reputation:</span>
-//               <span className="font-medium">{stats.reputation || "N/A"}</span>
-//             </div>
-//           </div>
-//         );
-//       default:
-//         return <p className="text-muted-foreground">No stats available</p>;
-//     }
-//   };
-
-//   // Platform-specific icon and gradient
-//   const renderPlatformStyle = () => {
-//     switch (title.toLowerCase()) {
-//       case "leetcode":
-//         return {
-//           icon: <Trophy className="h-6 w-6 text-yellow-500" />,
-//           gradient: "from-yellow-400 to-yellow-600",
-//         };
-//       case "codeforces":
-//         return {
-//           icon: <Award className="h-6 w-6 text-blue-500" />,
-//           gradient: "from-blue-400 to-blue-600",
-//         };
-//       case "codechef":
-//         return {
-//           icon: <Star className="h-6 w-6 text-green-500" />,
-//           gradient: "from-green-400 to-green-600",
-//         };
-//       default:
-//         return {
-//           icon: <User className="h-6 w-6 text-gray-500" />,
-//           gradient: "from-gray-400 to-gray-600",
-//         };
-//     }
-//   };
-
-//   const platformStyle = renderPlatformStyle();
-
-//   return (
-//     <Card
-//       className={`h-[25vh] overflow-auto bg-gradient-to-br ${platformStyle.gradient} shadow-lg hover:shadow-xl transition-shadow duration-300`}
-//     >
-//       <CardHeader className="pb-2">
-//         <div className="flex items-center justify-between">
-//           <CardTitle className="text-xl flex items-center gap-2 text-white">
-//             {platformStyle.icon}
-//             {title}
-//           </CardTitle>
-//         </div>
-//         <CardDescription className="text-white/80">
-//           {username ? `@${username}` : "No username provided"}
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent className="text-white">
-//         {renderStats()}
-//       </CardContent>
-//     </Card>
-//   );
-// };
-
-// export default StatsCard;
-
 import { motion } from "framer-motion";
 
+// SVG logos for platforms
+const platformLogos = {
+  leetcode: "/leetcode.svg", // Replace with actual path to LeetCode SVG
+  codeforces: "/codeforces.svg", // Replace with actual path to Codeforces SVG
+  codechef: "/codechef.svg", // Replace with actual path to CodeChef SVG
+};
+
+// Platform-specific styles
 const platformStyles = {
-  leetcode: { emoji: "🏆", gradient: "bg-gradient-to-br from-yellow-300 to-yellow-500" },
-  codeforces: { emoji: "🎖️", gradient: "bg-gradient-to-br from-blue-300 to-blue-500" },
-  codechef: { emoji: "⭐", gradient: "bg-gradient-to-br from-green-300 to-green-500" },
-  default: { emoji: "👤", gradient: "bg-gradient-to-br from-gray-300 to-gray-500" },
+  leetcode: {
+    gradient: "bg-gradient-to-br from-yellow-300 to-yellow-500",
+    textColor: "text-black",
+    bgColor: "bg-yellow-100",
+  },
+  codeforces: {
+    gradient: "bg-gradient-to-br from-gray-800 to-gray-900",
+    textColor: "text-blue-400",
+    bgColor: "bg-gray-900",
+  },
+  codechef: {
+    gradient: "bg-[#6D513E]",
+    textColor: "text-white",
+    bgColor: "bg-[#8F7A69]",
+  },
+  default: {
+    gradient: "bg-gradient-to-br from-gray-300 to-gray-500",
+    textColor: "text-white",
+    bgColor: "bg-gray-100",
+  },
 };
 
 const StatsCard = ({ title, username, stats, loading }) => {
-  const platform = platformStyles[title.toLowerCase()] || platformStyles.default;
+  const platform =
+    platformStyles[title.toLowerCase()] || platformStyles.default;
+  const logo = platformLogos[title.toLowerCase()];
+
+  // Filter out unwanted stats based on the platform
+  const filteredStats = stats
+    ? Object.entries(stats).filter(([key]) => {
+        if (title.toLowerCase() === "leetcode" && key === "reputation")
+          return false;
+        if (title.toLowerCase() === "codechef" && key === "problemsSolved")
+          return false;
+        if (key === "platform") return false;
+        return true;
+      })
+    : null;
 
   return (
     <motion.div
-      className={`p-5 rounded-2xl shadow-xl ${platform.gradient} text-white w-[250px] sm:w-[300px] mx-auto`}
+      className={`p-6 rounded-lg shadow-lg ${platform.gradient} ${platform.textColor} w-[350px] mx-auto font-comic`}
       whileHover={{ scale: 1.05 }}
+      style={{ fontFamily: "Comic Sans MS, sans-serif" }}
     >
+      {/* Username at the top */}
       <div className="flex items-center gap-3 text-2xl font-bold">
-        <span className="text-4xl">{platform.emoji}</span>
-        {title}
+        {/* Platform Logo */}
+        {logo && (
+          <img src={logo} alt={title} className="w-10 h-10 object-contain" />
+        )}
+        <span>{title}</span>
       </div>
-      <p className="text-sm text-white/80 mt-1">{username ? `@${username}` : "No username"}</p>
-      
-      <div className="mt-3 space-y-2">
+      <p className="text-sm mt-1">
+        {username ? `@${username}` : "No username"}
+      </p>
+
+      {/* Stats below username */}
+      <div className="mt-4 space-y-2">
         {loading ? (
-          <p className="animate-pulse text-white/80">Loading stats...</p>
-        ) : stats ? (
-          Object.entries(stats).map(([key, value]) => (
-            <div key={key} className="flex justify-between bg-white/20 p-2 rounded-lg">
-              <span className="capitalize">{key.replace(/([A-Z])/g, " $1")}:</span>
+          <p className="animate-pulse">Loading stats...</p>
+        ) : filteredStats ? (
+          filteredStats.map(([key, value]) => (
+            <div
+              key={key}
+              className={`flex justify-between ${platform.bgColor} p-2 rounded-md shadow-sm`}
+            >
+              <span className="capitalize">
+                {key.replace(/([A-Z])/g, " $1")}:
+              </span>
               <span className="font-semibold">{value || "N/A"}</span>
             </div>
           ))
         ) : (
-          <p className="text-white/80">No stats available</p>
+          <p>No stats available</p>
         )}
       </div>
     </motion.div>

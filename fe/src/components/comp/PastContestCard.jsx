@@ -9,13 +9,33 @@ import { BookmarkIcon, ExternalLinkIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useStore } from "../../lib/store";
 
-const PastContestCard = ({ contest, onBookmark }) => {
-  const { bookmarkedContests } = useStore();
+const PastContestCard = ({ contest }) => {
+  const { bookmarkedContests, bookmarkContest, user } = useStore();
 
+  const isBookmarked = bookmarkedContests.some(
+    (c) => c.contestName === contest.contestName && c.userId === user.id
+  );
+
+  // Handle bookmark click
+  const handleBookmarkClick = async () => {
+    try {
+      const response = await bookmarkContest(contest);
+      if (response.success) {
+        console.log("Bookmark status updated successfully");
+
+      } else {
+        console.error("Failed to update bookmark status:", response.error);
+      }
+    } catch (error) {
+      console.error("Error updating bookmark status:", error);
+    }
+  };
+
+  // Platform logos (replace with actual image paths or URLs)
   const platformLogos = {
     LeetCode: "/leetcode.svg",
     CodeChef: "/codechef.svg",
-    Codeforces: "/code-forces.svg",
+    Codeforces: "/codeforces.svg",
   };
 
   return (
@@ -45,7 +65,11 @@ const PastContestCard = ({ contest, onBookmark }) => {
             <span className="font-medium">Rank:</span> {contest.rank}
           </p>
           <p className="text-sm">
-            <span className="font-medium">New Rating:</span> {contest.newRating}
+            <span className="font-medium">Rating:</span> {contest.rating}
+          </p>
+          <p className="text-sm">
+            <span className="font-medium">Created At:</span>{" "}
+            {new Date(contest.createdAt).toLocaleString()}
           </p>
         </CardContent>
       </div>
@@ -55,23 +79,19 @@ const PastContestCard = ({ contest, onBookmark }) => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => onBookmark(contest)}
-          className={
-            bookmarkedContests.includes(contest.id)
-              ? "text-yellow-500"
-              : "text-muted-foreground"
-          }
+          onClick={handleBookmarkClick}
+          className={isBookmarked ? "text-yellow-500" : "text-muted-foreground"}
         >
           <BookmarkIcon className="h-5 w-5" />
-        </Button>
-        <a
+       </Button>
+        {/* <a
           href={contest.url}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center text-sm text-primary hover:underline"
         >
           Visit <ExternalLinkIcon className="h-4 w-4 ml-1" />
-        </a>
+        </a>  */}
       </div>
     </Card>
   );

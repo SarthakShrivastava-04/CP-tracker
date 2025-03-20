@@ -221,6 +221,7 @@ export const fetchUserStats = async (req, res) => {
 
     // Update CodeChef stats with calculated ratings
     codechefStats.maxRating = codechefRatings.maxRating;
+    codechefStats.currentRating = codechefRatings.currentRating;
 
     res.json({
       codechefStats,

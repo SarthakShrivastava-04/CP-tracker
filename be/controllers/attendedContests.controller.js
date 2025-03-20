@@ -134,7 +134,6 @@ export const fetchCodeChefPastContests = async (ccId) => {
 
 // Merge all past contests data
 export const fetchAllAttendedContests = async (req, res) => {
-  console.log("sent past");
   const { lcId, ccId, cfId } = req.body;
   console.log(req.body);
 
