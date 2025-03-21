@@ -42,21 +42,14 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <Link
             to="/"
-            className="text-xl font-bold text-[#000C2D] dark:text-[#f4f4f5] hover:opacity-80 transition-opacity"
+            className="text-2xl font-bold text-[#000C2D] dark:text-[#f4f4f5] hover:opacity-80 transition-opacity"
           >
             Contest Tracker
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 mx-auto">
-          <motion.a
-            href="/"
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
-            whileHover={{ y: -2 }}
-          >
-            Home
-          </motion.a>
+        <div className="hidden md:flex items-center gap-8 mx-auto">
           <motion.a
             href="/dashboard"
             className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
