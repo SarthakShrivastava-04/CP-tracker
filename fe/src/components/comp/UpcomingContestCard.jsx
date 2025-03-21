@@ -17,7 +17,7 @@ const UpcomingContestCard = ({ contest }) => {
   };
 
   return (
-    <Card className="w-full flex-row items-center p-4 gap-4 hover:shadow-lg transition-shadow duration-300 bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700">
+    <Card className="w-full sm:w-[48%] lg:w-[32.4%] flex flex-col md:flex-row items-center p-4 gap-4 hover:shadow-lg transition-shadow duration-300 bg-zinc-100 dark:bg-[#17203a] border-zinc-200 dark:border-zinc-700">
       {/* Platform Logo */}
       <div className="w-16 h-16 flex-shrink-0">
         <img

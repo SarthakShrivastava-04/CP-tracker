@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import PastContestCard from "./PastContestCard";
 import UpcomingContestCard from "./UpcomingContestCard";
+import { Switch } from "../ui/switch";
 
 const ContestTabs = ({ type }) => {
   const {
@@ -25,28 +26,28 @@ const ContestTabs = ({ type }) => {
   const platforms = ["LeetCode", "CodeChef", "Codeforces"];
 
   // Fetch contests based on type
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        if (type === "bookmarked") {
-          await fetchBookmarkedContests(user.id);
-        } else {
-          await fetchContests();
-        }
-      } catch (error) {
-        toast({
-          variant: "destructive",
-          title: "Error fetching data",
-          description: error.message,
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       if (type === "bookmarked") {
+  //         await fetchBookmarkedContests(user.id);
+  //       } else {
+  //         await fetchContests();
+  //       }
+  //     } catch (error) {
+  //       toast({
+  //         variant: "destructive",
+  //         title: "Error fetching data",
+  //         description: error.message,
+  //       });
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, [type, fetchContests, fetchBookmarkedContests, user]);
+  //   fetchData();
+  // }, [type, fetchContests, fetchBookmarkedContests, user]);
 
   // Filter contests based on selected platforms
   useEffect(() => {
@@ -64,7 +65,13 @@ const ContestTabs = ({ type }) => {
     }
 
     setFilteredContests(contests);
-  }, [type, upcomingContests, pastContests, bookmarkedContests, selectedPlatforms]);
+  }, [
+    type,
+    upcomingContests,
+    pastContests,
+    bookmarkedContests,
+    selectedPlatforms,
+  ]);
 
   const handleBookmark = async (contest) => {
     const result = await toggleBookmark(contest.id);
@@ -88,7 +95,7 @@ const ContestTabs = ({ type }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-zinc-900 dark:text-white" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#000C2D] dark:text-[#f4f4f5]" />
       </div>
     );
   }
@@ -99,45 +106,46 @@ const ContestTabs = ({ type }) => {
       <div className="flex flex-wrap gap-4">
         {platforms.map((platform) => (
           <div key={platform} className="flex items-center gap-2">
-            <Checkbox
+            <Switch
               id={platform}
               checked={selectedPlatforms.includes(platform)}
               onCheckedChange={() => handlePlatformFilterChange(platform)}
-              className="border-zinc-900 dark:border-white data-[state=checked]:bg-zinc-900 dark:data-[state=checked]:bg-white"
+              className="bg-[#000C2D] dark:bg-[#f4f4f5] data-[state=checked]:bg-[#000C2D] dark:data-[state=checked]:bg-[#000C2D] transition-all"
             />
             <Label
               htmlFor={platform}
-              className="text-zinc-900 dark:text-white"
+              className="text-[#000C2D] dark:text-[#f4f4f5]"
             >
               {platform}
             </Label>
           </div>
         ))}
       </div>
-
-      {/* Contest List */}
-      {filteredContests.length === 0 ? (
-        <div className="text-center py-8">
-          <p className="text-zinc-500 dark:text-zinc-400">No contests found</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {filteredContests.map((contest) =>
-            type === "upcoming" ? (
-              <UpcomingContestCard
-                key={contest.id}
-                contest={contest}
-              />
-            ) : (
-              <PastContestCard
-                key={contest.id}
-                contest={contest}
-                onBookmark={handleBookmark}
-              />
-            )
-          )}
-        </div>
-      )}
+      <div>
+        {/* Contest List */}
+        {filteredContests.length === 0 ? (
+          <div className="text-center py-8">
+            <p className="text-[#000C2D] dark:text-[#f4f4f5]">
+              No contests found
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-1 flex flex-wrap gap-4">
+            {filteredContests.map((contest) =>
+              type === "upcoming" ? (
+                <UpcomingContestCard key={contest.id} contest={contest} />
+              ) : (
+                <PastContestCard
+                  key={contest.id}
+                  contest={contest}
+                  onBookmark={handleBookmark}
+                  type={type}
+                />
+              )
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

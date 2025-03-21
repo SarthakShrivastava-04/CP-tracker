@@ -68,10 +68,10 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-zinc-900">
-      <Card className="w-full max-w-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg shadow-zinc-200 dark:shadow-zinc-800">
+    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-[#000C2D]">
+      <Card className="w-full max-w-md bg-white dark:bg-[#000C2D] border border-zinc-200 dark:border-[#1e3a8a] rounded-xl shadow-lg shadow-zinc-200 dark:shadow-[#1e3a8a]">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-zinc-900 dark:text-white">
+          <CardTitle className="text-3xl font-bold text-[#000C2D] dark:text-[#f4f4f5]">
             Create an Account
           </CardTitle>
           <CardDescription className="text-zinc-500 dark:text-zinc-400">
@@ -82,7 +82,7 @@ const Register = () => {
           <CardContent className="space-y-6">
             {/* Name Input */}
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-zinc-900 dark:text-white">
+              <Label htmlFor="name" className="text-[#000C2D] dark:text-[#f4f4f5]">
                 Name
               </Label>
               <Input
@@ -92,13 +92,13 @@ const Register = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
+                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
               />
             </div>
 
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-900 dark:text-white">
+              <Label htmlFor="email" className="text-[#000C2D] dark:text-[#f4f4f5]">
                 Email
               </Label>
               <Input
@@ -108,13 +108,13 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
+                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
               />
             </div>
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-zinc-900 dark:text-white">
+              <Label htmlFor="password" className="text-[#000C2D] dark:text-[#f4f4f5]">
                 Password
               </Label>
               <Input
@@ -123,13 +123,13 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
+                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
               />
             </div>
 
             {/* Confirm Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="text-zinc-900 dark:text-white">
+              <Label htmlFor="confirmPassword" className="text-[#000C2D] dark:text-[#f4f4f5]">
                 Confirm Password
               </Label>
               <Input
@@ -138,15 +138,15 @@ const Register = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-zinc-900 focus:border-zinc-900 dark:focus:ring-white dark:focus:border-white transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
+                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
               />
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
+          <CardFooter className="flex flex-col space-y-4 mt-6">
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 transition-all duration-300"
+              className="w-full bg-[#000C2D] text-[#f4f4f5] hover:bg-[#00113D] dark:bg-[#f4f4f5] dark:text-[#000C2D] dark:hover:bg-zinc-100 transition-all duration-300"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -160,11 +160,11 @@ const Register = () => {
             </Button>
 
             {/* Login Link */}
-            <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-center text-sm text-[#000C2D] dark:text-[#f4f4f5]">
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-zinc-900 hover:text-zinc-700 dark:text-white dark:hover:text-zinc-300 underline transition-all duration-300"
+                className="text-[#000C2D] hover:text-[#00113D] dark:text-[#f4f4f5] dark:hover:text-white underline transition-all duration-300"
               >
                 Login
               </Link>

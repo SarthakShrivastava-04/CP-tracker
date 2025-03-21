@@ -9,7 +9,7 @@ import { BookmarkIcon, ExternalLinkIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useStore } from "../../lib/store";
 
-const PastContestCard = ({ contest }) => {
+const PastContestCard = ({ contest , type}) => {
   const { bookmarkedContests, bookmarkContest, user } = useStore();
 
   const isBookmarked = bookmarkedContests.some(
@@ -38,7 +38,7 @@ const PastContestCard = ({ contest }) => {
   };
 
   return (
-    <Card className="w-full flex-row items-center p-4 gap-4 hover:shadow-lg transition-shadow duration-300  dark:bg-zinc-800 bg-zinc-100 border-zinc-200 dark:border-zinc-700">
+    <Card className="w-full sm:w-[48%] lg:w-[32.4%] flex flex-col md:flex-row items-center p-4 gap-4 hover:shadow-lg transition-shadow duration-300 bg-zinc-100 dark:bg-[#17203a] border-zinc-200 dark:border-zinc-700">
       {/* Platform Logo */}
       <div className="w-16 h-16 flex-shrink-0">
         <img
@@ -64,12 +64,14 @@ const PastContestCard = ({ contest }) => {
             <span className="font-medium">Rank:</span> {contest.rank}
           </p>
           <p className="text-sm text-zinc-700 dark:text-zinc-300">
-            <span className="font-medium">Rating:</span> {contest.rating}
+            <span className="font-medium">Rating:</span> {type === "bookmarked" ? contest.rating :contest.newRating}
           </p>
+         {type === "bookmarked" && (
           <p className="text-sm text-zinc-700 dark:text-zinc-300">
-            <span className="font-medium">Created At:</span>{" "}
-            {new Date(contest.createdAt).toLocaleString()}
-          </p>
+          <span className="font-medium">Created At:</span>{" "}
+          {new Date(contest.createdAt).toLocaleString()}
+        </p>
+         )} 
         </CardContent>
       </div>
 

@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 // SVG logos for platforms
 const platformLogos = {
-  leetcode: "/leetcode.svg", // Replace with actual path to LeetCode SVG
-  codeforces: "/codeforces.svg", // Replace with actual path to Codeforces SVG
-  codechef: "/codechef.svg", // Replace with actual path to CodeChef SVG
+  leetcode: "/leetcode.svg", 
+  codeforces: "/codeforces.svg", 
+  codechef: "/codechef.svg", 
 };
 
 // Platform-specific styles
@@ -15,9 +15,9 @@ const platformStyles = {
     bgColor: "bg-yellow-100",
   },
   codeforces: {
-    gradient: "bg-gradient-to-br from-gray-800 to-gray-900",
-    textColor: "text-blue-400",
-    bgColor: "bg-gray-900",
+    gradient: "bg-gradient-to-br from-gray-700 to-gray-700",
+    textColor: "text-blue-300",
+    bgColor: "bg-gray-800",
   },
   codechef: {
     gradient: "bg-[#6D513E]",
@@ -44,13 +44,14 @@ const StatsCard = ({ title, username, stats, loading }) => {
         if (title.toLowerCase() === "codechef" && key === "problemsSolved")
           return false;
         if (key === "platform") return false;
+        if (key === "username") return false;
         return true;
       })
     : null;
 
   return (
     <motion.div
-      className={`p-6 rounded-lg shadow-lg ${platform.gradient} ${platform.textColor} w-[350px] mx-auto font-comic`}
+      className={`p-6 rounded-lg shadow-lg ${platform.gradient} ${platform.textColor}  w-[370px] mx-auto font-comic`}
       whileHover={{ scale: 1.05 }}
       style={{ fontFamily: "Comic Sans MS, sans-serif" }}
     >

@@ -8,56 +8,57 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #18181b; /* Zinc-900 for fonts */
-  background-color: #ffffff; /* White background */
+  color: #000C2D;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: #ffffff; /* White background */
-  --foreground: #18181b; /* Zinc-900 text */
-  --card: #ffffff; /* White card */
-  --card-foreground: #18181b; /* Zinc-900 text on card */
-  --popover: #ffffff; /* White popover */
-  --popover-foreground: #18181b; /* Zinc-900 text on popover */
-  --primary: #18181b; /* Zinc-900 primary */
-  --primary-foreground: #ffffff; /* White text on primary */
-  --secondary: #3f3f46; /* Zinc-800 secondary */
-  --secondary-foreground: #ffffff; /* White text on secondary */
-  --muted: #d4d4d8; /* Zinc-200 muted */
-  --muted-foreground: #3f3f46; /* Zinc-800 text on muted */
-  --accent: #d4d4d8; /* Zinc-200 accent */
-  --accent-foreground: #3f3f46; /* Zinc-800 text on accent */
-  --destructive: #71717a; /* Zinc-600 destructive */
-  --border: #d4d4d8; /* Zinc-200 border */
-  --input: #ffffff; /* White input */
-  --ring: #3f3f46; /* Zinc-800 ring */
-  --chart-1: #71717a; /* Zinc-600 chart */
-  --chart-2: #a1a1aa; /* Zinc-500 chart */
-  --chart-3: #d4d4d8; /* Zinc-200 chart */
-  --chart-4: #3f3f46; /* Zinc-800 chart */
-  --chart-5: #18181b; /* Zinc-900 chart */
-  --sidebar: #ffffff; /* White sidebar */
-  --sidebar-foreground: #3f3f46; /* Zinc-800 text on sidebar */
-  --sidebar-primary: #18181b; /* Zinc-900 primary on sidebar */
-  --sidebar-primary-foreground: #ffffff; /* White text on primary sidebar */
-  --sidebar-accent: #d4d4d8; /* Zinc-200 accent on sidebar */
-  --sidebar-accent-foreground: #3f3f46; /* Zinc-800 text on accent sidebar */
-  --sidebar-border: #d4d4d8; /* Zinc-200 border on sidebar */
-  --sidebar-ring: #3f3f46; /* Zinc-800 ring on sidebar */
+  --background: #ffffff;
+  --foreground: #000C2D;
+  --card: #ffffff;
+  --card-foreground: #000C2D;
+  --popover: #ffffff;
+  --popover-foreground: #000C2D;
+  --primary: #000C2D;
+  --primary-foreground: #f4f4f8;
+  --secondary: #1e3a8a;
+  --secondary-foreground: #f4f4f8;
+  --muted: #e5e7eb;
+  --muted-foreground: #6b7280;
+  --accent: #000C2D;
+  --accent-foreground: #f4f4f8;
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: #000C2D;
+  --chart-1: #000C2D;
+  --chart-2: #1e3a8a;
+  --chart-3: #3b82f6;
+  --chart-4: #60a5fa;
+  --chart-5: #93c5fd;
+  --sidebar: #f4f4f8;
+  --sidebar-foreground: #000C2D;
+  --sidebar-primary: #000C2D;
+  --sidebar-primary-foreground: #f4f4f8;
+  --sidebar-accent: #000C2D;
+  --sidebar-accent-foreground: #f4f4f8;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #000C2D;
 }
 
 a {
   font-weight: 600;
-  color: #3f3f46; /* Zinc-800 for links */
+  color: #000C2D;
   text-decoration: inherit;
   transition: color 0.2s ease-in-out;
 }
 a:hover {
-  color: #18181b; /* Zinc-900 on hover */
+  color: #1e3a8a;
 }
+
 
 body {
   margin: 0 auto;
@@ -71,6 +72,8 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: 700;
+  color: #000C2D;
 }
 
 button {
@@ -80,110 +83,134 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #18181b;
-  color: #ffffff; /* White text */
+  background-color: #000C2D;
+  color: #f4f4f8;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 12, 45, 0.1);
 }
 button:hover {
-  background-color: #18181b; /* Zinc-900 on hover */
+  background-color: #1e3a8a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 12, 45, 0.15);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid rgba(0, 12, 45, 0.3);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #18181b; /* Zinc-900 text */
-    background-color: #ffffff; /* White background */
+    color: #000C2D;
+    background-color: #f4f4f8;
   }
   a:hover {
-    color: #18181b; /* Zinc-900 on hover */
-  }
-  button {
-    /* background-color: #3f3f46; Zinc-800 button */
-    background-color: #18181bef; 
+    color: #1e3a8a;
   }
 }
 
 .dark {
-  --background: #18181b; /* Zinc-900 background */
-  --foreground: #f4f4f5; /* Zinc-50 text */
-  --card: #3f3f46; /* Zinc-800 card */
-  --card-foreground: #f4f4f5; /* Zinc-50 text on card */
-  --popover: #3f3f46; /* Zinc-800 popover */
-  --popover-foreground: #f4f4f5; /* Zinc-50 text on popover */
-  --primary: #f4f4f5; /* Zinc-50 primary */
-  --primary-foreground: #18181b; /* Zinc-900 text on primary */
-  --secondary: #71717a; /* Zinc-600 secondary */
-  --secondary-foreground: #f4f4f5; /* Zinc-50 text on secondary */
-  --muted: #a1a1aa; /* Zinc-500 muted */
-  --muted-foreground: #f4f4f5; /* Zinc-50 text on muted */
-  --accent: #a1a1aa; /* Zinc-500 accent */
-  --accent-foreground: #f4f4f5; /* Zinc-50 text on accent */
-  --destructive: #d4d4d8; /* Zinc-200 destructive */
-  --border: #71717a; /* Zinc-600 border */
-  --input: #3f3f46; /* Zinc-800 input */
-  --ring: #71717a; /* Zinc-600 ring */
-  --chart-1: #d4d4d8; /* Zinc-200 chart */
-  --chart-2: #a1a1aa; /* Zinc-500 chart */
-  --chart-3: #71717a; /* Zinc-600 chart */
-  --chart-4: #3f3f46; /* Zinc-800 chart */
-  --chart-5: #18181b; /* Zinc-900 chart */
-  --sidebar: #3f3f46; /* Zinc-800 sidebar */
-  --sidebar-foreground: #f4f4f5; /* Zinc-50 text on sidebar */
-  --sidebar-primary: #f4f4f5; /* Zinc-50 primary on sidebar */
-  --sidebar-primary-foreground: #18181b; /* Zinc-900 text on primary sidebar */
-  --sidebar-accent: #a1a1aa; /* Zinc-500 accent on sidebar */
-  --sidebar-accent-foreground: #f4f4f5; /* Zinc-50 text on accent sidebar */
-  --sidebar-border: #71717a; /* Zinc-600 border on sidebar */
-  --sidebar-ring: #71717a; /* Zinc-600 ring on sidebar */
+  --background: #000C2D;
+  --foreground: #f4f4f8;
+  --card: #112056;
+  --card-foreground: #f4f4f8;
+  --popover: #112056;
+  --popover-foreground: #f4f4f8;
+  --primary: #f4f4f8;
+  --primary-foreground: #000000;
+  --secondary: #3b82f6;
+  --secondary-foreground: #f4f4f8;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #3b82f6;
+  --accent-foreground: #f4f4f8;
+  --destructive: #ef4444;
+  --border: #1e3a8a;
+  --input: #112056;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #60a5fa;
+  --chart-3: #93c5fd;
+  --chart-4: #bfdbfe;
+  --chart-5: #dbeafe;
+  --sidebar: #112056;
+  --sidebar-foreground: #f4f4f8;
+  --sidebar-primary: #f4f4f8;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #3b82f6;
+  --sidebar-accent-foreground: #f4f4f8;
+  --sidebar-border: #1e3a8a;
+  --sidebar-ring: #3b82f6;
 }
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+.dark button {
+  background-color: #f4f4f4ef;
+  color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark button:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.315);
+}
+
+.dark a {
+  color: #f4f4f4ef;
+}
+.dark a:hover {
+  color: #ffffff;
+}
+
+.card, 
+.popover,
+.dialog {
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 12, 45, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark .card,
+.dark .popover,
+.dark .dialog {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover,
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 12, 45, 0.12);
+}
+
+.dark .card:hover,
+.dark .interactive:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+input, select, textarea {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  background-color: var(--input);
+  color: var(--foreground);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(0, 12, 45, 0.1);
+}
+
+.dark input:focus,
+.dark select:focus, 
+.dark textarea:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-[var(--border)] outline-[var(--ring)]/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[var(--background)] text-[var(--foreground)];
   }
 }
