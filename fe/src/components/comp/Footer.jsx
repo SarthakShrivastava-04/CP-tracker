@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="flex items-center gap-6">
           {/* GitHub Link */}
           <motion.a
-            href="https://github.com/SarthakShrivastava-04/contest-tracker"
+            href="https://github.com/SarthakShrivastava-04/CP-tracker"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-2"
@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Documentation Link */}
           <a
-            href="https://github.com/SarthakShrivastava-04/contest-tracker/blob/main/README.md"
+            href="https://github.com/SarthakShrivastava-04/CP-tracker/blob/main/README.md"
             className="text-sm text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
           >
             Documentation

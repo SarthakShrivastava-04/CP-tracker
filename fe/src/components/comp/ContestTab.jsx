@@ -26,28 +26,28 @@ const ContestTabs = ({ type }) => {
   const platforms = ["LeetCode", "CodeChef", "Codeforces"];
 
   // Fetch contests based on type
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       if (type === "bookmarked") {
-  //         await fetchBookmarkedContests(user.id);
-  //       } else {
-  //         await fetchContests();
-  //       }
-  //     } catch (error) {
-  //       toast({
-  //         variant: "destructive",
-  //         title: "Error fetching data",
-  //         description: error.message,
-  //       });
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        if (type === "bookmarked") {
+          await fetchBookmarkedContests(user.id);
+        } else {
+          await fetchContests();
+        }
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: "Error fetching data",
+          description: error.message,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //   fetchData();
-  // }, [type, fetchContests, fetchBookmarkedContests, user]);
+    fetchData();
+  }, [type, fetchContests, fetchBookmarkedContests, user]);
 
   // Filter contests based on selected platforms
   useEffect(() => {
