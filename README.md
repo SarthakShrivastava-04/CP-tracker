@@ -57,6 +57,7 @@ A **Contest Tracker App** designed to help competitive programmers track their p
 
 ## 📹 Demo Video
 
-[![Demo Video](https://via.placeholder.com/800x400)](https://www.youtube.com/watch?v=your-video-id)  
+[![Demo Video](https://via.placeholder.com/800x400)](https://youtu.be/3BnWJJAMW9A)
+
 
 
