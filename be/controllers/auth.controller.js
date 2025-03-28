@@ -72,7 +72,7 @@ export const login = async (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // Secure in production
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", 
-        maxAge: 1000 * 60 * 60 * 24 * 10, // 10 days
+        maxAge: 1000 * 60 * 60 * 24 * 10, 
       })
       .status(200)
       .json({ user: userInfo, token });
