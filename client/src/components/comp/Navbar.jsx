@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../lib/store";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import {
   MoonIcon,
   SunIcon,
   MenuIcon,
   XIcon,
   Youtube,
-  FileText,
   CodeXml,
 } from "lucide-react";
 import { useTheme } from "../../lib/Theme-provider";
