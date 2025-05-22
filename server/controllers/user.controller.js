@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 import {
   fetchCodeChefPastContests,
   fetchLeetCodePastContests,
-} from "../controllers/attendedContests.controller.js";
+} from "./attendedContests.controller.js";
 import prisma from "../lib/prisma.js";
 
 // Helper function to calculate max and current rating from past contests
