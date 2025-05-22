@@ -16,7 +16,6 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 const Register = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,7 +27,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate password match
     if (password !== confirmPassword) {
       toast({
         variant: "destructive",
@@ -41,7 +39,7 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      const result = await register(name, email, password);
+      const result = await register(email, password);
 
       if (!result.success) {
         toast({
@@ -52,9 +50,9 @@ const Register = () => {
       } else {
         toast({
           title: "Registration successful",
-          description: "Your account has been created. Please login.",
+          description: "Your account has been created.",
         });
-        navigate("/login");
+        navigate("/user-form");
       }
     } catch (error) {
       toast({
@@ -68,39 +66,19 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-[#000C2D]">
-      <Card className="w-full max-w-md bg-white dark:bg-[#000C2D] border border-zinc-200 dark:border-[#1e3a8a] rounded-xl shadow-lg shadow-zinc-200 dark:shadow-[#1e3a8a]">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-[#000C2D] dark:text-[#f4f4f5]">
+    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
+      <Card className="w-full max-w-md rounded-xl border-zinc-300 bg-zinc-100 dark:bg-zinc-900 dark:border-zinc-700">
+        <CardHeader className="text-center text-zinc-900 dark:text-zinc-100">
+          <CardTitle className="text-3xl font-bold">
             Create an Account
           </CardTitle>
-          <CardDescription className="text-zinc-500 dark:text-zinc-400">
-            Enter your details to get started
-          </CardDescription>
+          <CardDescription>Enter your details to get started</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-6">
-            {/* Name Input */}
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Name
-              </Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Enter a username"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
-              />
-            </div>
-
+          <CardContent className="space-y-6 text-zinc-900 dark:text-zinc-200">
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Email
-              </Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -108,45 +86,40 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
             {/* Confirm Password Input */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Confirm Password
-              </Label>
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input
                 id="confirmPassword"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-6">
-            {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-[#000C2D] text-[#f4f4f5] hover:bg-[#00113D] dark:bg-[#f4f4f5] dark:text-[#000C2D] dark:hover:bg-zinc-100 transition-all duration-300"
+              className="w-full transition-all duration-300 dark:bg-zinc-50 dark:text-black bg-zinc-900 text-zinc-50"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -159,12 +132,11 @@ const Register = () => {
               )}
             </Button>
 
-            {/* Login Link */}
-            <p className="text-center text-sm text-[#000C2D] dark:text-[#f4f4f5]">
+            <p className="text-center text-sm">
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-[#000C2D] hover:text-[#00113D] dark:text-[#f4f4f5] dark:hover:text-white underline transition-all duration-300"
+                className="underline transition-all duration-300"
               >
                 Login
               </Link>

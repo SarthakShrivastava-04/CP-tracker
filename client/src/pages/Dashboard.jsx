@@ -21,42 +21,23 @@ const Dashboard = () => {
   } = useStore();
 
   useEffect(() => {
-    // Fetch stats and contests when dashboard loads
     fetchAllStats();
     fetchContests();
     if (user?.id) {
-      fetchBookmarkedContests(user.id); // Fetch bookmarked contests for the user
+      fetchBookmarkedContests(user.id);
     }
   }, [fetchAllStats, fetchContests, fetchBookmarkedContests, user]);
 
   return (
-    <div className="space-y-8 p-6 mx-28 bg-white dark:bg-[#000C2D]">
-      {/* Welcome Section */}
-      <div className="space-y-4 text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-[#000C2D] dark:text-[#f4f4f5]">
-          Welcome back, {user?.username || "Coder"}! 
-        </h2>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          Ready to conquer today's challenges? Let’s track your progress and
-          crush your goals!
-        </p>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 italic">
-          "The only way to do great work is to love what you do." – Steve Jobs
-        </p>
-      </div>
-
-      {/* Stats Section */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-[#000C2D] dark:text-[#f4f4f5]">
-          Your Coding Stats
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="space-y-6 p-4 md:p-8 mx-4 md:mx-30 bg-white dark:bg-zinc-950 text-black dark:text-white font-sans">
+      <section className="space-y-4">
+        <h2 className="text-lg md:text-xl font-medium">Your Coding Stats</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatsCard
             title="LeetCode"
             username={user?.leetcode}
             stats={leetcodeStats}
             loading={!leetcodeStats}
-
           />
           <StatsCard
             title="Codeforces"
@@ -73,45 +54,41 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Contests Section */}
-      <section className="space-y-6">
+      <section className="space-y-4">
         <Tabs defaultValue="upcoming">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold text-[#000C2D] dark:text-[#f4f4f5]">
-              Coding Contests
-            </h2>
-            <TabsList className="bg-zinc-100 flex gap-2 dark:bg-[#000C2D]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+            <h2 className="text-lg md:text-xl font-medium">Coding Contests</h2>
+            <TabsList className="bg-gray-200 dark:bg-zinc-900 border border-gray-300 dark:border-zinc-700 rounded-lg p-1 flex gap-2">
               <TabsTrigger
                 value="upcoming"
-                className="data-[state=active]:ring-2 data-[state=active]:ring-blue-500 dark:data-[state=active]:ring-blue-400 transition-all duration-300"    >
+                className="text-xs md:text-sm px-3 py-1 rounded-md hover:text-white dark:hover:text-black data-[state=active]:bg-black data-[state=active]:text-white dark:data-[state=active]:bg-white dark:data-[state=active]:text-black"
+              >
                 Upcoming
               </TabsTrigger>
               <TabsTrigger
                 value="past"
-                className="data-[state=active]:ring-2 data-[state=active]:ring-blue-500 dark:data-[state=active]:ring-blue-400 transition-all duration-300"  >
+                className="text-xs md:text-sm px-3 py-1 rounded-md hover:text-white dark:hover:text-black data-[state=active]:bg-black data-[state=active]:text-white dark:data-[state=active]:bg-white dark:data-[state=active]:text-black"
+              >
                 Past
               </TabsTrigger>
               <TabsTrigger
                 value="bookmarked"
-                className="data-[state=active]:bg-[#000C2D] data-[state=active]:text-[#f4f4f5] dark:data-[state=active]:bg-[#f4f4f5] dark:data-[state=active]:text-[#000C2D] data-[state=active]:outline data-[state=active]:outline-2 data-[state=active]:outline-[#000C2D] dark:data-[state=active]:outline-[#f4f4f5] transition-all duration-300"
+                className="text-xs md:text-sm px-3 py-1 rounded-md hover:text-white dark:hover:text-black data-[state=active]:bg-black data-[state=active]:text-white dark:data-[state=active]:bg-white dark:data-[state=active]:text-black"
               >
                 Bookmarked
               </TabsTrigger>
             </TabsList>
           </div>
 
-          {/* Upcoming Contests */}
-          <TabsContent value="upcoming" className="mt-6">
+          <TabsContent value="upcoming" className="mt-4">
             <ContestTabs type="upcoming" />
           </TabsContent>
 
-          {/* Past Contests */}
-          <TabsContent value="past" className="mt-6">
+          <TabsContent value="past" className="mt-4">
             <ContestTabs type="past" />
           </TabsContent>
 
-          {/* Bookmarked Contests */}
-          <TabsContent value="bookmarked" className="mt-6">
+          <TabsContent value="bookmarked" className="mt-4">
             <ContestTabs type="bookmarked" />
           </TabsContent>
         </Tabs>

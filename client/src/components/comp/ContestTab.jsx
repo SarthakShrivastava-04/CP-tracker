@@ -110,14 +110,9 @@ const ContestTabs = ({ type }) => {
               id={platform}
               checked={selectedPlatforms.includes(platform)}
               onCheckedChange={() => handlePlatformFilterChange(platform)}
-              className="bg-[#000C2D] dark:bg-[#f4f4f5] data-[state=checked]:bg-[#000C2D] dark:data-[state=checked]:bg-[#000C2D] transition-all"
+              className=" border-zinc-500 border-2 transition-all"
             />
-            <Label
-              htmlFor={platform}
-              className="text-[#000C2D] dark:text-[#f4f4f5]"
-            >
-              {platform}
-            </Label>
+            <Label htmlFor={platform}>{platform}</Label>
           </div>
         ))}
       </div>
@@ -125,12 +120,12 @@ const ContestTabs = ({ type }) => {
         {/* Contest List */}
         {filteredContests.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-[#000C2D] dark:text-[#f4f4f5]">
+            <p className="text-[#000000] dark:text-[#f4f4f5]">
               No contests found
             </p>
           </div>
         ) : (
-          <div className="space-y-1 flex flex-wrap gap-4">
+          <div className="space-y-1 flex flex-wrap gap-1">
             {filteredContests.map((contest) =>
               type === "upcoming" ? (
                 <UpcomingContestCard key={contest.id} contest={contest} />

@@ -13,15 +13,14 @@ dotenv.config();
 // CORS configuration
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173", // Allow only your frontend origin
-    credentials: true, // Allow credentials (cookies)
-    methods: ["GET", "POST", "OPTIONS"], // Allow these methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    credentials: true, 
+    methods: ["GET", "POST", "OPTIONS"], 
+    allowedHeaders: ["Content-Type", "Authorization"], 
   })
 );
 
-// Handle preflight requests
-app.options("*", cors()); // Allow preflight requests for all routes
+app.options("*", cors()); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

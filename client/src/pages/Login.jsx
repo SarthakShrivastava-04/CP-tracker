@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../lib/store";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 const Login = () => {
@@ -22,7 +21,6 @@ const Login = () => {
   const { login, isAuthenticated } = useStore();
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -31,24 +29,13 @@ const Login = () => {
       const result = await login(email, password);
 
       if (!result.success) {
-        toast({
-          variant: "destructive",
-          title: "Login failed",
-          description: result.error,
-        });
+        console.error("Login failed:", result.error);
       } else {
-        toast({
-          title: "Login successful",
-          description: "Welcome back!",
-        });
+        console.log("Login successful. Redirecting to dashboard...");
         navigate("/dashboard");
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Login failed",
-        description: "An unexpected error occurred. Please try again.",
-      });
+      console.error("Unexpected login error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -61,23 +48,18 @@ const Login = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-[#000C2D]">
-      <Card className="w-full max-w-md bg-white dark:bg-[#000C2D] border border-zinc-200 dark:border-[#1e3a8a] rounded-xl shadow-lg shadow-zinc-200 dark:shadow-[#1e3a8a]">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-[#000C2D] dark:text-[#f4f4f5]">
-            Welcome Back
-          </CardTitle>
-          <CardDescription className="text-zinc-500 dark:text-zinc-400">
+    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
+      <Card className="w-full max-w-md rounded-xl border-zinc-300 bg-zinc-100 dark:bg-zinc-900 dark:border-zinc-700">
+        <CardHeader className="text-center text-zinc-900 dark:text-zinc-100">
+          <CardTitle className="text-3xl font-bold">Welcome Back</CardTitle>
+          <CardDescription>
             Enter your credentials to access your account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-6">
-            {/* Email Input */}
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Email
-              </Label>
+            <div className="space-y-2 text-zinc-900 dark:text-zinc-200">
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -85,19 +67,16 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
-            {/* Password Input */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                  Password
-                </Label>
+                <Label htmlFor="password">Password</Label>
                 <Link
                   to="/forgot-password"
-                  className="text-sm text-[#000C2D] hover:text-[#00113D] dark:text-[#f4f4f5] dark:hover:text-white hover:underline transition-all duration-300"
+                  className="text-sm hover:underline transition-all duration-300"
                 >
                   Forgot password?
                 </Link>
@@ -108,15 +87,14 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-6">
-            {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-[#000C2D] text-[#f4f4f5] hover:bg-[#00113D] dark:bg-[#f4f4f5] dark:text-[#000C2D] dark:hover:bg-zinc-100 transition-all duration-300"
+              className="w-full transition-all dark:bg-zinc-50 dark:text-black bg-zinc-900 text-zinc-50 duration-300"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -129,12 +107,11 @@ const Login = () => {
               )}
             </Button>
 
-            {/* Register Link */}
-            <p className="text-center text-sm text-[#000C2D] dark:text-[#f4f4f5]">
+            <p className="text-center text-sm">
               Don't have an account?{" "}
               <Link
                 to="/register"
-                className="text-[#000C2D] hover:text-[#00113D] dark:text-[#f4f4f5] dark:hover:text-white underline transition-all duration-300"
+                className="underline font-bold transition-all duration-300"
               >
                 Register
               </Link>

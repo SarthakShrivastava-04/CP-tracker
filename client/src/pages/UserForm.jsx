@@ -11,21 +11,17 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const UserForm = () => {
   const { user, updateUsernames } = useStore();
-  const [leetcodeUsername, setLeetcodeUsername] = useState(
-    user?.leetcode || ""
-  );
-  const [codeforcesUsername, setCodeforcesUsername] = useState(
-    user?.codeforces || ""
-  );
-  const [codechefUsername, setCodechefUsername] = useState(
-    user?.codechef || ""
-  );
+  const [leetcodeUsername, setLeetcodeUsername] = useState(user?.leetcode || "");
+  const [codeforcesUsername, setCodeforcesUsername] = useState(user?.codeforces || "");
+  const [codechefUsername, setCodechefUsername] = useState(user?.codechef || "");
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +31,7 @@ const UserForm = () => {
       codeforcesUsername,
       codechefUsername,
     });
+
     try {
       const result = await updateUsernames(
         leetcodeUsername,
@@ -43,90 +40,71 @@ const UserForm = () => {
       );
 
       if (!result.success) {
-        toast({
-          variant: "destructive",
-          title: "Update failed",
-          description: result.error,
-        });
+        console.error("Update failed:", result.error);
       } else {
-        toast({
-          title: "Profile updated",
-          description: "Your platform usernames have been saved.",
-        });
+        console.log("Profile updated successfully");
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Update failed",
-        description: "An unexpected error occurred. Please try again.",
-      });
+      console.error("Unexpected error:", error);
     } finally {
       setIsLoading(false);
+      navigate("/dashboard");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4 bg-white dark:bg-[#000C2D]">
-      <Card className="w-full max-w-md bg-[#f4f4f4e8] dark:bg-[#000C2D] border border-zinc-200 dark:border-[#1e3a8a] rounded-xl shadow-lg shadow-zinc-200 dark:shadow-[#1e3a8a]">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-[#000C2D] dark:text-[#f4f4f5]">
+    <div className="flex justify-center items-center min-h-[calc(100vh-12rem)] p-4">
+      <Card className="w-full max-w-md mt-8 border border-zinc-300 bg-zinc-100 dark:bg-zinc-900 dark:border-zinc-700 rounded-xl">
+        <CardHeader className="text-center text-zinc-900 dark:text-zinc-100">
+          <CardTitle className="text-2xl mb-2 font-bold">
             Platform Usernames
           </CardTitle>
-          <CardDescription className="text-zinc-500 dark:text-zinc-400">
+          <CardDescription>
             Enter your usernames for the coding platforms to track your stats
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-6">
-            {/* LeetCode Username */}
-            <div className="space-y-2">
-              <Label htmlFor="leetcode" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                LeetCode Username
-              </Label>
+          <CardContent className="space-y-6 mt-8">
+            <div className="space-y-2 text-zinc-900 dark:text-zinc-200">
+              <Label htmlFor="leetcode">LeetCode Username</Label>
               <Input
                 id="leetcode"
                 type="text"
                 placeholder="leetcode_user"
                 value={leetcodeUsername}
                 onChange={(e) => setLeetcodeUsername(e.target.value)}
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
-            {/* Codeforces Username */}
             <div className="space-y-2">
-              <Label htmlFor="codeforces" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                Codeforces Username
-              </Label>
+              <Label htmlFor="codeforces">Codeforces Username</Label>
               <Input
                 id="codeforces"
                 type="text"
                 placeholder="codeforces_user"
                 value={codeforcesUsername}
                 onChange={(e) => setCodeforcesUsername(e.target.value)}
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
-            {/* CodeChef Username */}
             <div className="space-y-2">
-              <Label htmlFor="codechef" className="text-[#000C2D] dark:text-[#f4f4f5]">
-                CodeChef Username
-              </Label>
+              <Label htmlFor="codechef">CodeChef Username</Label>
               <Input
                 id="codechef"
                 type="text"
                 placeholder="codechef_user"
                 value={codechefUsername}
                 onChange={(e) => setCodechefUsername(e.target.value)}
-                className="focus:ring-2 focus:ring-[#000C2D] focus:border-[#000C2D] dark:focus:ring-[#f4f4f5] dark:focus:border-[#f4f4f5] transition-all duration-300 dark:bg-[#1e3a8a] dark:border-[#1e3a8a] dark:text-[#f4f4f5]"
+                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-6">
             <Button
               type="submit"
-              className="w-full bg-[#000C2D] text-[#f4f4f5] hover:bg-[#00113D] dark:bg-[#f4f4f5] dark:text-[#000C2D] dark:hover:bg-zinc-100 transition-all duration-300"
+              className="w-full transition-all duration-300 dark:bg-zinc-50 dark:text-black bg-zinc-900 text-zinc-50"
               disabled={isLoading}
             >
               {isLoading ? (

@@ -9,6 +9,7 @@ import {
   XIcon,
   Youtube,
   FileText,
+  CodeXml,
 } from "lucide-react";
 import { useTheme } from "../../lib/Theme-provider";
 import { motion } from "framer-motion";
@@ -31,28 +32,31 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
+      className={`sticky top-0 z-50 w-full border-b-1 border-zinc-300 dark:border-zinc-700 transition-all duration-200 ${
         scrolled
-          ? "bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:bg-[#000C2D]/95 dark:supports-[backdrop-filter]:bg-[#000C2D]/60 shadow-sm"
-          : "bg-white dark:bg-[#000C2D]"
+          ? "backdrop-blur supports-[backdrop-filter]:bg-opacity-60 shadow-sm"
+          : ""
       }`}
     >
-      <div className="container flex h-16 items-center justify-between mx-auto px-4">
+      <div className="container flex h-16 items-center justify-between mx-auto px-6">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 min-w-58">
           <Link
             to="/"
-            className="text-2xl font-bold text-[#000C2D] dark:text-[#f4f4f5] hover:opacity-80 transition-opacity"
+            className="text-xl flex items-center gap-2 transition-opacity"
           >
-            Contest Tracker
+          
+            <CodeXml className="w-6 h-6"/>
+            <span className="font-medium ">CP-Track</span>
+          
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 mx-auto">
+        <div className="hidden md:flex items-center gap-4 md:gap-8 mx-auto ">
           <motion.a
             href="/dashboard"
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+            className="hover:underline dark:text-zinc-100 hover:opacity-90 transition-colors"
             whileHover={{ y: -2 }}
           >
             Dashboard
@@ -61,28 +65,17 @@ const Navbar = () => {
             href="https://www.youtube.com/@TLE_Eliminators"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-1"
+            className="hover:underline dark:text-zinc-100 hover:opacity-90 transition-colors flex items-center gap-1"
             whileHover={{ y: -2 }}
           >
             <Youtube size={16} />
             <span>Solutions</span>
           </motion.a>
           <motion.a
-            href="https://www.tle-eliminators.com/cp-sheet"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-1"
-            whileHover={{ y: -2 }}
-          >
-            <FileText size={16} />
-            <span>CP-31 Sheet</span>
-          </motion.a>
-          <motion.a
             href="/user-form"
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-1"
+            className="hover:underline dark:text-zinc-100 hover:opacity-90 transition-colors flex items-center gap-1"
             whileHover={{ y: -2 }}
           >
-            
             <span>Update usernames</span>
           </motion.a>
         </div>
@@ -93,18 +86,15 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               <motion.a
                 href="#"
-                className="flex items-center gap-2 text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+                className="flex items-center dark:text-zinc-100 hover:opacity-90 gap-2 hover:underline transition-colors"
                 whileHover={{ y: -2 }}
               >
-                <div className="w-6 h-6 rounded-full bg-[#000C2D] dark:bg-[#f4f4f5] text-[#f4f4f5] dark:text-[#000C2D] flex items-center justify-center text-xs font-medium">
-                  {user?.username ? user.username.charAt(0).toUpperCase() : "U"}
-                </div>
                 <span className="font-medium">{user?.username}</span>
               </motion.a>
               <Button
                 variant="ghost"
                 onClick={logout}
-                className="text-[#000C2D] dark:text-[#f4f4f5] hover:bg-[#000C2D]/5 dark:hover:bg-white/10 transition-all"
+                className="dark:bg-zinc-100 dark:text-black bg-zinc-800 text-sm font-normal  text-zinc-100 "
               >
                 Logout
               </Button>
@@ -113,14 +103,14 @@ const Navbar = () => {
             <div className="flex items-center gap-6">
               <motion.a
                 href="/login"
-                className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+                className="hover:underline transition-colors"
                 whileHover={{ y: -2 }}
               >
                 Login
               </motion.a>
               <motion.a
                 href="/register"
-                className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+                className="hover:underline transition-colors"
                 whileHover={{ y: -2 }}
               >
                 Register
@@ -131,7 +121,7 @@ const Navbar = () => {
           <motion.a
             href="#"
             onClick={toggleTheme}
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:bg-[#000C2D]/5 dark:hover:bg-white/10 ml-1 transition-all p-2 rounded-full"
+            className="hover:bg-opacity-10 ml-1 transition-all p-2 rounded-full"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -149,7 +139,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:bg-[#000C2D]/5 dark:hover:bg-white/10 transition-all"
+            className="hover:bg-opacity-10 transition-all"
           >
             {theme === "dark" ? (
               <SunIcon className="h-5 w-5" />
@@ -161,7 +151,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-[#000C2D] dark:text-[#f4f4f5] hover:bg-[#000C2D]/5 dark:hover:bg-white/10 transition-all"
+            className="hover:bg-opacity-10 transition-all"
           >
             {isMobileMenuOpen ? (
               <XIcon className="h-5 w-5" />
@@ -174,12 +164,12 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t p-4 bg-white dark:bg-[#000C2D] shadow-lg">
+        <div className="md:hidden border-t p-4 shadow-lg">
           <nav className="flex flex-col space-y-2">
             <motion.a
               href="/"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+              className="hover:underline transition-colors"
               whileHover={{ y: -2 }}
             >
               Home
@@ -187,7 +177,7 @@ const Navbar = () => {
             <motion.a
               href="/dashboard"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+              className="hover:underline transition-colors"
               whileHover={{ y: -2 }}
             >
               Dashboard
@@ -197,22 +187,11 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-2"
+              className="hover:underline transition-colors flex items-center gap-2"
               whileHover={{ y: -2 }}
             >
               <Youtube size={16} />
               <span>Solutions</span>
-            </motion.a>
-            <motion.a
-              href="https://www.tle-eliminators.com/cp-sheet"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-2"
-              whileHover={{ y: -2 }}
-            >
-              <FileText size={16} />
-              <span>CP-31 Sheet</span>
             </motion.a>
 
             <div className="border-t my-2 border-zinc-200 dark:border-zinc-700"></div>
@@ -222,14 +201,9 @@ const Navbar = () => {
                 <motion.a
                   href="#"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors flex items-center gap-2"
+                  className="hover:underline transition-colors flex items-center gap-2"
                   whileHover={{ y: -2 }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-[#000C2D] dark:bg-[#f4f4f5] text-[#f4f4f5] dark:text-[#000C2D] flex items-center justify-center text-xs font-medium">
-                    {user?.username
-                      ? user.username.charAt(0).toUpperCase()
-                      : "U"}
-                  </div>
                   <span>Profile</span>
                 </motion.a>
                 <Button
@@ -238,7 +212,7 @@ const Navbar = () => {
                     logout();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full justify-start text-[#000C2D] dark:text-[#f4f4f5] hover:bg-[#000C2D]/5 dark:hover:bg-white/10 transition-all"
+                  className="w-full justify-start hover:bg-opacity-10 transition-all"
                 >
                   Logout
                 </Button>
@@ -248,7 +222,7 @@ const Navbar = () => {
                 <motion.a
                   href="/login"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+                  className="hover:underline transition-colors"
                   whileHover={{ y: -2 }}
                 >
                   Login
@@ -256,7 +230,7 @@ const Navbar = () => {
                 <motion.a
                   href="/register"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-[#000C2D] dark:text-[#f4f4f5] hover:text-[#00113D] dark:hover:text-white transition-colors"
+                  className="hover:underline transition-colors"
                   whileHover={{ y: -2 }}
                 >
                   Register
