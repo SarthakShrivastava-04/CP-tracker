@@ -1,6 +1,8 @@
 # Contest Tracker App 
 
-**Deployed Link:** soon...  
+
+**Deployed Link:** [Live link](https://cp-tracker-h508.onrender.com)
+
 
 A **Contest Tracker App** designed to help competitive programmers track their progress across **LeetCode (LC)**, **CodeChef (CC)**, and **Codeforces (CF)**. It provides personalized data like ranks, ratings, number of questions solved, and a list of attended and upcoming contests. Users can filter contests by platform, bookmark them, and access solutions and CP resources like the **CP31 Sheet**.
 
