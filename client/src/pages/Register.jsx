@@ -16,50 +16,36 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 const Register = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { register } = useStore();
 
+  const { register } = useStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast({
-        variant: "destructive",
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match.",
-      });
+      toast.error("Passwords don't match");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const result = await register(email, password);
+      const result = await register(username, email, password);
 
       if (!result.success) {
-        toast({
-          variant: "destructive",
-          title: "Registration failed",
-          description: result.error,
-        });
+        toast.error(result.error || "Registration failed");
       } else {
-        toast({
-          title: "Registration successful",
-          description: "Your account has been created.",
-        });
+        toast.success("Registration successful! Your account has been created.");
         navigate("/user-form");
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Registration failed",
-        description: "An unexpected error occurred. Please try again.",
-      });
+      toast.error("Unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -74,9 +60,24 @@ const Register = () => {
           </CardTitle>
           <CardDescription>Enter your details to get started</CardDescription>
         </CardHeader>
+
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-6 text-zinc-900 dark:text-zinc-200">
-            {/* Email Input */}
+          <CardContent className="space-y-6">
+
+            {/* Username */}
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="yourusername"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -86,11 +87,10 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
-            {/* Password Input */}
+            {/* Password */}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -99,11 +99,10 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
 
-            {/* Confirm Password Input */}
+            {/* Confirm Password */}
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input
@@ -112,14 +111,15 @@ const Register = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="focus:ring-2 focus:border-2 transition-all duration-300"
               />
             </div>
+
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4 mt-6">
+
+          <CardFooter className="flex flex-col space-y-4 mt-2">
             <Button
               type="submit"
-              className="w-full transition-all duration-300 dark:bg-zinc-50 dark:text-black bg-zinc-900 text-zinc-50"
+              className="w-full dark:bg-zinc-50 dark:text-black bg-zinc-900 text-zinc-50"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -134,10 +134,7 @@ const Register = () => {
 
             <p className="text-center text-sm">
               Already have an account?{" "}
-              <Link
-                to="/login"
-                className="underline transition-all duration-300"
-              >
+              <Link to="/login" className="underline">
                 Login
               </Link>
             </p>
