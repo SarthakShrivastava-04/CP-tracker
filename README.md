@@ -1,65 +1,49 @@
-# Contest Tracker App 
+# Contest Tracker App
 
+**Live Demo:** https://cp-track.onrender.com/
 
-**Deployed Link:** [Live link](https://cp-track.onrender.com)
-
-
-A **Contest Tracker App** designed to help competitive programmers track their progress across **LeetCode (LC)**, **CodeChef (CC)**, and **Codeforces (CF)**. It provides personalized data like ranks, ratings, number of questions solved, and a list of attended and upcoming contests. Users can filter contests by platform, bookmark them, and access solutions and CP resources like the **CP31 Sheet**.
+A Contest Tracker App built for competitive programmers to monitor their performance and contests across LeetCode, CodeChef, and Codeforces. The application aggregates user statistics, contest history, and upcoming contests into a single, easy-to-use platform.
 
 ---
 
-## ✨ Features
+## Overview
 
-1. **Personalized User Data**:
-   - Displays **ranks**, **ratings**, and **number of questions solved** for LeetCode, CodeChef, and Codeforces.
-   - Fetches data in real-time using public APIs.
-
-2. **Contest Tracking**:
-   - Lists all **attended contests** with details like rank, score, and performance.
-   - Shows **upcoming contests** with filters for platform (LC, CC, CF).
-
-3. **Bookmarking**:
-   - Users can bookmark contests for quick access.
-
-4. **Solutions and Resources**:
-   - Provides **links to contest solutions** and the **CP31 Sheet** for practice.
-
-5. **Responsive Design and dark & light theme**:
-   - Fully responsive and optimized for all devices (desktop, tablet, mobile) and dark & light theme for better user experience.
-
-6. **Platform Filtering**:
-   - Filter contests by platform (LeetCode, CodeChef, Codeforces) for a streamlined experience.
+The application helps users track their competitive programming journey by consolidating ratings, ranks, solved problems, and contest participation from multiple platforms. It provides a unified dashboard for analyzing progress and planning future contests efficiently.
 
 ---
 
-## 🛠️ Tech Stack
+## Key Features
 
-- **Frontend**:
-  - React.js
-  - Tailwind CSS (for styling)
-  - shadcn/ui (for UI components)
-  - Zustand (for state management)
+### Personalized User Statistics
+- Displays ratings, ranks, and total problems solved for LeetCode, CodeChef, and Codeforces.
+- Fetches data in real time using public APIs.
 
-- **Backend**:
-  - Node.js
-  - Express.js
-  - Prisma (for database ORM)
-  - GraphQL
+### Contest Tracking
+- Lists attended contests with performance details.
+- Shows upcoming contests across supported platforms.
 
-- **Database**:
-  - MongoDB (for storing user data and bookmarks)
+### Platform-Based Filtering
+- Filter contests by platform for focused tracking.
 
-- **APIs Used**:
-  - [Codeforces API](https://codeforces.com/api/)
-  - [CodeChef API](https://www.codechef.com/api/list/contests/all)
-  - [LeetCode GraphQL API](https://leetcode.com/graphql)
+### Bookmarking and Resources
+- Bookmark contests for quick access.
+- Provides links to contest solutions and curated resources such as the CP31 Sheet.
 
+### Responsive UI and Theme Support
+- Fully responsive design for all devices.
+- Supports both light and dark themes.
 
 ---
 
-## 📹 Demo Video
+## Tech Stack
 
-[![Demo Video](https://via.placeholder.com/800x400)](https://youtu.be/3BnWJJAMW9A)
+- Frontend: React.js, Tailwind CSS, shadcn/ui, Zustand
+- Backend: Node.js, Express.js, GraphQL, Prisma ORM
+- Database: MongoDB
+- APIs: Codeforces API, CodeChef API, LeetCode GraphQL API
 
+---
 
+## Live Demo
 
+https://cp-track.onrender.com/

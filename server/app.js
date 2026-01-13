@@ -35,6 +35,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.get("/health", (req, res) => {
+  res.send("Health check (pinging to keep server alive)");
+})
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
